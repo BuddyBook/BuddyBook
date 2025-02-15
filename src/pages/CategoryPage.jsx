@@ -1,12 +1,14 @@
-import axios from 'axios'
 import { useState } from 'react';
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
-function CategoryPage() {
+function CategoryPage({handleTeamCreated}) {
 
   const [teamName, setTeamName] = useState('');
   const [createdBy, setCreatedBy] = useState('');
   const [timestamp, setTimestamp] = useState(new Date().toLocaleString());
 
+  const navigate = useNavigate()
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,11 +24,13 @@ function CategoryPage() {
         'https://buddybook-e6cd7-default-rtdb.europe-west1.firebasedatabase.app/resource.json',
         teamData
       )
-      .then(() => {
+      .then((response) => {
         alert('Your team was created! :)');
-        setTeamName('');
-        setCreatedBy('');
-        setTimestamp(new Date().toLocaleString());
+        setTimestamp(new Date().toLocaleString())
+        const teamId = response.data.name;
+        handleTeamCreated(teamId, teamName)
+        navigate(`/category/${teamId}`);
+        ;
       })
       .catch((error) => {
         console.error('Error creating team:', error);

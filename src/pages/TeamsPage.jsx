@@ -1,30 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { API_URL } from "../config/api";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-function CategoryPage({ onTeamCreated }) {
-  const [teamName, setTeamName] = useState('');
-  const [createdBy, setCreatedBy] = useState('');
+function TeamsPage() {
+  const [teams, setTeams] = useState([]); // state to store the date fetched from API
+  const [teamName, setTeamName] = useState("");
+  const [createdBy, setCreatedBy] = useState("");
   const [timestamp, setTimestamp] = useState(new Date().toLocaleString());
-  const [teams, setTeams] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get('https://buddybook-e6cd7-default-rtdb.europe-west1.firebasedatabase.app/resource.json')
+      .get(`${API_URL}/teams.json`)
       .then((response) => {
         const teamsObject = response.data;
-        const teamsArr = Object.keys(teamsObject).map((id) => ({
-          id,
-          ...teamsObject[id],
-        }));
-        setTeams(teamsArr);
+
+        //to handle null
+        if (teamsObject) {
+          const teamsArr = Object.keys(teamsObject).map((id) => ({
+            id,
+            ...teamsObject[id],
+          }));
+
+          setTeams(teamsArr);
+        }
       })
       .catch((error) => {
-        console.error('Error fetching teams:', error);
+        console.error("Error fetching teams:", error);
       });
   }, []);
+
+  //Form submit
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -36,18 +44,15 @@ function CategoryPage({ onTeamCreated }) {
     };
 
     axios
-      .post(
-        'https://buddybook-e6cd7-default-rtdb.europe-west1.firebasedatabase.app/resource.json',
-        teamData
-      )
+      .post(`${API_URL}/teams.json`, teamData)
       .then((response) => {
         const teamId = response.data.name;
-        onTeamCreated(teamId, teamName);
-        navigate(`/category/${teamId}`);
+
+        navigate(`/teams/${teamId}`);
       })
       .catch((error) => {
-        console.error('Error creating team:', error);
-        alert('Failed to create team. Please try again.');
+        console.error("Error creating team:", error);
+        alert("Failed to create team. Please try again.");
       });
   };
 
@@ -64,11 +69,16 @@ function CategoryPage({ onTeamCreated }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {teams.map((team) => (
-          <div key={team.id} className="bg-white p-4 rounded-lg shadow-md border">
-            <h3 className="text-xl font-bold text-vibrantPurple">{team.teamName}</h3>
+          <div
+            key={team.id}
+            className="bg-white p-4 rounded-lg shadow-md border"
+          >
+            <h3 className="text-xl font-bold text-vibrantPurple">
+              {team.teamName}
+            </h3>
             <p>Created by: {team.createdBy}</p>
             <button
-              onClick={() => navigate(`/category/${team.id}`)}
+              onClick={() => navigate(`/teams/${team.id}`)}
               className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded"
             >
               View Members
@@ -139,4 +149,4 @@ function CategoryPage({ onTeamCreated }) {
   );
 }
 
-export default CategoryPage;
+export default TeamsPage;

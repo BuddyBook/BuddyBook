@@ -1,0 +1,7 @@
+<p className="text">Hello</p>
+              <div className="inner">
+                <p className="text">{profileObj.age}</p>
+              </div>
+              <div className="cover">
+                <p className="text">{profileObj.name}</p>
+              </div>

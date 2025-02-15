@@ -7,6 +7,7 @@ function CategoryPage({ onTeamCreated }) {
   const [createdBy, setCreatedBy] = useState('');
   const [timestamp, setTimestamp] = useState(new Date().toLocaleString());
   const [teams, setTeams] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,74 +52,89 @@ function CategoryPage({ onTeamCreated }) {
   };
 
   return (
-    <div>
-      <h1>CategoryPage</h1>
-      
-      <div className="teams-list">
-        <h2>Existing Teams</h2>
-        <ul>
-          {teams.map((team) => (
-            <li key={team.id}>
-              <h3>{team.teamName}</h3>
-              <p>Created by: {team.createdBy}</p>
-              <button onClick={() => navigate(`/category/${team.id}`)}>
-                View Members
-              </button>
-            </li>
-          ))}
-        </ul>
+    <div className="p-6">
+      <h1 className="text-3xl font-bold mb-4">Category Page</h1>
+
+      <button
+        onClick={() => setShowModal(true)}
+        className="mb-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Create New Team
+      </button>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {teams.map((team) => (
+          <div key={team.id} className="bg-white p-4 rounded-lg shadow-md border">
+            <h3 className="text-xl font-bold text-vibrantPurple">{team.teamName}</h3>
+            <p>Created by: {team.createdBy}</p>
+            <button
+              onClick={() => navigate(`/category/${team.id}`)}
+              className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded"
+            >
+              View Members
+            </button>
+          </div>
+        ))}
       </div>
 
-      <div className="min-h-screen bg-gradient-to-r from-pastelPink via-pastelBlue to-pastelGreen flex items-center justify-center">
-        <div className="bg-white bg-opacity-90 p-8 rounded-xl shadow-xl border-4 border-pastelYellow max-w-md w-full">
-          <h1 className="text-4xl font-handwriting text-center text-vibrantPurple mb-6">
-            Create a Team
-          </h1>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Team Name
-              </label>
-              <input
-                type="text"
-                value={teamName}
-                onChange={(e) => setTeamName(e.target.value)}
-                className="mt-1 block w-full border-2 border-pastelPink rounded-md shadow-sm focus:ring-vibrantPurple focus:border-vibrantPurple"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Created By
-              </label>
-              <input
-                type="text"
-                value={createdBy}
-                onChange={(e) => setCreatedBy(e.target.value)}
-                className="mt-1 block w-full border-2 border-pastelPink rounded-md shadow-sm focus:ring-vibrantPurple focus:border-vibrantPurple"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Timestamp
-              </label>
-              <input
-                type="text"
-                value={timestamp}
-                readOnly
-                className="mt-1 block w-full border-2 border-pastelPink rounded-md shadow-sm bg-gray-100"
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300"
-            >
-              Create Team
-            </button>
-          </form>
+      {showModal && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center">
+          <div className="bg-white p-8 rounded-xl shadow-xl max-w-md w-full">
+            <h1 className="text-2xl font-handwriting text-center text-vibrantPurple mb-6">
+              Create a Team
+            </h1>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Team Name
+                </label>
+                <input
+                  type="text"
+                  value={teamName}
+                  onChange={(e) => setTeamName(e.target.value)}
+                  className="mt-1 block w-full border-2 border-pastelPink rounded-md shadow-sm focus:ring-vibrantPurple focus:border-vibrantPurple"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Created By
+                </label>
+                <input
+                  type="text"
+                  value={createdBy}
+                  onChange={(e) => setCreatedBy(e.target.value)}
+                  className="mt-1 block w-full border-2 border-pastelPink rounded-md shadow-sm focus:ring-vibrantPurple focus:border-vibrantPurple"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Timestamp
+                </label>
+                <input
+                  type="text"
+                  value={timestamp}
+                  readOnly
+                  className="mt-1 block w-full border-2 border-pastelPink rounded-md shadow-sm bg-gray-100"
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300"
+              >
+                Create Team
+              </button>
+              <button
+                onClick={() => setShowModal(false)}
+                className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-2 transition duration-300"
+              >
+                Cancel
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

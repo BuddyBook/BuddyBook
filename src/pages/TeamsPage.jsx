@@ -112,9 +112,9 @@ return (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {teams.map((team) => (
           <div key={team.id} className="relative w-full bg-[#fff4c2] rounded-lg p-3 shadow-md">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-15 h-2 bg-black rounded-b-lg" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-15 h-2" />
             <div className="bg-white rounded-md p-4">
-              <h2 className="text-lg font-medium mb-2">Team Name: {team.teamName}</h2>
+              <h2 className="text-lg font-medium mb-2 text-[#101010d6]">Team Name: {team.teamName}</h2>
               <p className="text-sm mb-4">Created by: {team.createdBy}</p>
               <button
                 onClick={() => navigate(`/teams/${team.id}`)}

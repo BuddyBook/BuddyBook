@@ -1,7 +1,7 @@
 function Navbar() {
   return (
     <div>
-      <h1>Buddy Book</h1>
+      <h2>Buddy Book</h2>
     </div>
   );
 }

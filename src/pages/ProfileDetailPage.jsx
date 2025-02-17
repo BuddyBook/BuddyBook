@@ -25,10 +25,19 @@ function Profile() {
     return "Loading.....";
   }
 
+  //TODO: 
+  // add deleting functionality for FULL profile (top right/left on the screen)
+  // add editing functionality only on more individual topics (either with the full form OR )
+
   return (
     <div>
       <h1 className="text-2xl">This is the profile page</h1>
-      <h1>Profile name: {profile.name}</h1>
+      <h1>My name: {profile.name}</h1>
+      <h1>My age: {profile.age}</h1>
+      <h2>Where I am from: {profile.place}</h2>
+      <h2>What my hobbies are: {profile.hobbies}</h2>
+
+
     </div>
   );
 }

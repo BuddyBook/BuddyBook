@@ -133,6 +133,7 @@ function CreateProfilePage() {
             </div>
             <div className="flex flex-col">
               <label className="text-left">Upload your picture</label>
+              {/* TODO work on pushing the img to the API to render it */}
               <input className="input" name="" type="file" accept="image/*" />
             </div>
           </div>

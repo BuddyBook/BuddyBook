@@ -10,7 +10,7 @@ import { User } from "lucide-react";
 function MembersPage() {
   const { id } = useParams();
 
-  const [team, setTeam] = useState([]);
+  const [team, setTeam] = useState(null);
   const [members, setMembers] = useState([]);
 
   const colorSets = [
@@ -110,7 +110,7 @@ function MembersPage() {
       });
   }, [id]);
 
-  if (team === undefined) {
+  if (team === null) {
     return (
       <div>
         <Loader />
@@ -124,7 +124,7 @@ function MembersPage() {
       <h1 className="text-xs">Created by : {team.createdBy} </h1>
       <NavLink to={`/profile/create/${id}`}>
         <button className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-full mb-8 transition duration-300 shadow-md">
-          Create New Team
+          Add Your Profile
         </button>
       </NavLink>
       <div className="flex justify-evenly flex-wrap gap-6">

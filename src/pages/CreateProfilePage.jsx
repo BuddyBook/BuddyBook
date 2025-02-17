@@ -70,17 +70,15 @@ function CreateProfilePage() {
   };
 
   return (
-    <div className="p-10">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-yellow-50 to-orange-50 flex flex-col justify-center items-center text-center p-6">
       <form className="form" onSubmit={handleSubmit}>
         <div className="new-profile-title">
           <h2>
-            Welcome,
-            <br />
             <span>Create your profile 😎</span>
           </h2>
         </div>
-        <div className="flex justify-evenly flex-wrap">
-          <div className="flex flex-col gap-7 w-2xs">
+        <div className="flex justify-evenly flex-wrap gap-35">
+          <div className="flex flex-col gap-15 w-2xs">
             <div className="flex flex-col">
               <label className="text-left">Name</label>
               <input className="input" name="name" type="text" />
@@ -118,7 +116,7 @@ function CreateProfilePage() {
           </div>
 
           {/* right side container */}
-          <div className="flex flex-col gap-7 w-2xs">
+          <div className="flex flex-col gap-15 w-2xs">
             <div className="flex flex-col">
               <label className="text-left">
                 If you had to survive a zombie apocalypse with only three items,
@@ -163,7 +161,7 @@ function CreateProfilePage() {
           </div>
         </div>
 
-        <button className="button-confirm">Let's go →</button>
+        <button className="button-confirm">Let's go</button>
       </form>
     </div>
   );

@@ -138,7 +138,7 @@ function CreateProfilePage() {
           </div>
         </div>
 
-        <button className="button-confirm">Let`s go →</button>
+        <button className="button-confirm">Let's go →</button>
       </form>
     </div>
   );

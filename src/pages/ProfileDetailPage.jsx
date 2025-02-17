@@ -27,8 +27,8 @@ function Profile() {
 
   return (
     <div>
-      <h1 className="text-2xl">This is profile page</h1>
-      <h1>Profile name : {profile.name}</h1>
+      <h1 className="text-2xl">This is the profile page</h1>
+      <h1>Profile name: {profile.name}</h1>
     </div>
   );
 }

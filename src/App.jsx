@@ -26,7 +26,7 @@ function App() {
         <Route path="/teams/:id" element={<MembersPage />} />
         <Route path="/profile/create/:teamId" element={<CreateProfilePage />} />
         <Route path="/teams/:teamId/profile/:profileId" element={<Profile />} />
-        <Route path="/about" element=<About /> />
+        <Route path="/about" element={<About />} />
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
     </div>

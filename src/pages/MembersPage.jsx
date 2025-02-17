@@ -37,9 +37,9 @@ function MembersPage() {
 
   return (
     <div>
-      <h1>Members Page of : {team.createdBy} </h1>
-      <h2>Team Id is : {id} </h2>
-      <h2>Team Name : {team.teamName}</h2>
+      <h1>Members Page of: {team.createdBy} </h1>
+      <h2>Team Id is: {id} </h2>
+      <h2>Team Name: {team.teamName}</h2>
 
       <NavLink to={`/profile/create/${id}`}>
         <button className="mb-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">

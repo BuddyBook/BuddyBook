@@ -11,20 +11,23 @@ function MembersPage() {
   const { id } = useParams();
 
   const [team, setTeam] = useState([]);
+  const [members, setMembers] = useState([])
 
   useEffect(() => {
     axios
       .get(`${API_URL}/teams/${id}.json`)
       .then((response) => {
-        const members = response.data.members;
+        const { members: teamMembers, ...teamData } = response.data
+        console.log(response.data)
+        setTeam(teamData)
 
-        if (members) {
-          const profilesArray = Object.keys(members).map((id) => ({
+        if (teamMembers) {
+          const profilesArray = Object.keys(teamMembers).map((id) => ({
             id,
-            ...members[id],
+            ...teamMembers[id],
           }));
 
-          setTeam(profilesArray);
+          setMembers(profilesArray);
         }
       })
 
@@ -50,7 +53,7 @@ function MembersPage() {
       </NavLink>
 
       <div className="flex gap-5 justify-evenly flex-wrap">
-        {team.map((profileObj) => {
+        {members.map((profileObj) => {
           return (
             <div
               key={profileObj.id}

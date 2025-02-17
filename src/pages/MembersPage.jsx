@@ -14,7 +14,6 @@ function MembersPage() {
     axios
       .get(`${API_URL}/teams/${id}.json`)
       .then((response) => {
-        console.log(response.data);
         const members = response.data.members;
 
         if (members) {
@@ -82,9 +81,12 @@ function MembersPage() {
                 </div>
                 <div className="flex items-center transition-all duration-500 delay-200 group-hover:bottom-3 -bottom-full absolute gap-2 justify-evenly w-full">
                   <div className="flex gap-3 bg-gray-700 text-white p-0.7 transition-all duration-500 delay-200 rounded-full shadow-sm">
-                    <a className="hover:scale-110 transition-all duration-500 delay-200 m-1">
+                    <NavLink
+                      to={`/teams/${id}/profile/${profileObj.id}`}
+                      className="hover:scale-110 transition-all duration-500 delay-200 m-1"
+                    >
                       <span className="text-10px p-4">View</span>
-                    </a>
+                    </NavLink>
                   </div>
                 </div>
               </div>

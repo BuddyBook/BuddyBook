@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 //TODO Tailwind classes not applying correctly
 function Homepage() {
@@ -9,9 +9,9 @@ function Homepage() {
       <div className="bg-white bg-opacity-90 p-6 rounded-xl shadow-xl border-4 border-pastelYellow">
         <p className="font-handwriting text-sm mb-2 text-vibrantPurple">
           Created by Julia Solias & Uzma Shaik.
-          <a href="#" className="underline">
+          <NavLink to="/about" className="underline">
             About us →
-          </a>
+          </NavLink>
         </p>
         <h1 className="text-5xl font-bold text-pastelPink mb-4">
           Welcome to BuddyBook

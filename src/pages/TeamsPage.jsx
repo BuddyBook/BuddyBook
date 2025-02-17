@@ -102,7 +102,7 @@ const handleDelete = (id) => {
 
 return (
   <div className="p-6">
-    <h1 className="text-3xl font-bold mb-4">Teams Page</h1>
+    <h1 className="text-3xl font-bold mb-4 bg-[#fff4c2]">Teams Page</h1>
 
     <button onClick={() => setShowModal(true)} className="create-button">
       Create New Team
@@ -118,7 +118,7 @@ return (
               <p className="text-sm mb-4">Created by: {team.createdBy}</p>
               <button
                 onClick={() => navigate(`/teams/${team.id}`)}
-                className="text-sm bg-blue-300 hover:bg-blue-400 text-white font-bold py-1.5 px-3 rounded mb-4 transition duration-300"
+                className="text-sm bg-blue-300 hover:bg-blue-400 text-white font-bold py-1.5 px-3 rounded-full mb-4 transition duration-300"
               >
                 View Members
               </button>

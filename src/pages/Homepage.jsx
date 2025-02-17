@@ -5,7 +5,7 @@ function Homepage() {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-gradient-to-r from-pastelPink via-pastelBlue to-pastelGreen min-h-screen flex flex-col justify-center items-center text-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-yellow-50 to-orange-50 p-8 flex flex-col justify-center items-center text-center p-6">
       <div className="bg-white bg-opacity-90 p-6 rounded-xl shadow-xl border-4 border-pastelYellow">
         <p className="font-handwriting text-sm mb-2 text-vibrantPurple">
           Created by Julia Solias & Uzma Shaik.

@@ -4,6 +4,7 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../config/api";
 
 import dummyImage from "../assets/images/dummy-profile-image.png";
+import Loader from "../components/Loader";
 
 function Profile() {
   const { profileId } = useParams();
@@ -35,7 +36,11 @@ function Profile() {
   };
 
   if (profile === null) {
-    return "Loading.....";
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   }
 
   //TODO:

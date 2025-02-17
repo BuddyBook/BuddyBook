@@ -13,17 +13,11 @@ import EditDetailsPage from "./pages/EditDetailsPage";
 function App() {
   return (
     <div>
+      <Navbar />
+
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route
-          path="/teams"
-          element={
-            <>
-              <Navbar />
-              <TeamsPage />
-            </>
-          }
-        />
+        <Route path="/teams" element={<TeamsPage />} />
         <Route path="/teams/:id" element={<MembersPage />} />
         <Route path="/profile/create/:teamId" element={<CreateProfilePage />} />
         <Route path="/teams/:teamId/profile/:profileId" element={<Profile />} />

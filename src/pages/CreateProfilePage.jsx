@@ -2,11 +2,25 @@ import "../pages/CreateProfilePage.css";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../config/api";
+import { useState } from "react";
 
 function CreateProfilePage() {
   const { teamId } = useParams();
 
   const navigate = useNavigate();
+
+  const [imageBase64, setImageBase64] = useState(null);
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        setImageBase64(reader.result); // Store Base64 string
+      };
+    }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -35,10 +49,15 @@ function CreateProfilePage() {
       question4: question4.value,
       question5: question5.value,
       question6: question6.value,
+      profileImage: imageBase64,
     };
 
     axios
-      .post(`${API_URL}/teams/${teamId}/members.json`, newProfile)
+      .post(`${API_URL}/teams/${teamId}/members.json`, newProfile, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
       .then((response) => {
         console.log("success");
         navigate(-1);
@@ -134,7 +153,12 @@ function CreateProfilePage() {
             <div className="flex flex-col">
               <label className="text-left">Upload your picture</label>
               {/* TODO work on pushing the img to the API to render it */}
-              <input className="input" name="" type="file" accept="image/*" />
+              <input
+                className="input"
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+              />
             </div>
           </div>
         </div>

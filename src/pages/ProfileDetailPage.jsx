@@ -25,7 +25,7 @@ function Profile() {
     return "Loading.....";
   }
 
-  //TODO: 
+  //TODO:
   // add deleting functionality for FULL profile (top right/left on the screen)
   // add editing functionality only on more individual topics (either with the full form OR )
 
@@ -36,8 +36,7 @@ function Profile() {
       <h1>My age: {profile.age}</h1>
       <h2>Where I am from: {profile.place}</h2>
       <h2>What my hobbies are: {profile.hobbies}</h2>
-
-
+      <img src={profile.profileImage} />
     </div>
   );
 }

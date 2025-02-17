@@ -27,7 +27,10 @@ function App() {
         <Route path="/teams/:id" element={<MembersPage />} />
         <Route path="/profile/create/:teamId" element={<CreateProfilePage />} />
         <Route path="/teams/:teamId/profile/:profileId" element={<Profile />} />
-        <Route path="/editDetails/:profileId" element={<EditDetailsPage />} />
+        <Route
+          path="/teams/:teamId/members/:profileId/edit"
+          element={<EditDetailsPage />}
+        />
         <Route path="/about" element={<About />} />
         <Route path="/*" element={<ErrorPage />} />
       </Routes>

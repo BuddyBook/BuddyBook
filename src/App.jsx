@@ -8,6 +8,7 @@ import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
 import CreateProfilePage from "./pages/CreateProfilePage";
 import About from "./pages/AboutPage";
+import EditDetailsPage from "./pages/EditDetailsPage";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/teams/:id" element={<MembersPage />} />
         <Route path="/profile/create/:teamId" element={<CreateProfilePage />} />
         <Route path="/teams/:teamId/profile/:profileId" element={<Profile />} />
+        <Route path="/editDetails/:profileId" element={<EditDetailsPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/*" element={<ErrorPage />} />
       </Routes>

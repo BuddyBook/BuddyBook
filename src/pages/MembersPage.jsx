@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { API_URL } from "../config/api";
 
+import dummyImage from "../assets/images/dummy-profile-image.png";
+
 import "../pages/MembersPage.css";
 
 function MembersPage() {
@@ -56,7 +58,14 @@ function MembersPage() {
             >
               <div className="rounded-xl min-h-40 w-40 overflow-hidden relative text-center p-4 group items-center flex flex-col max-w-sm hover:shadow-2xl transition-all duration-500 shadow-xl">
                 <div className="text-gray-500 group-hover:scale-105 transition-all">
-                  <img src={profileObj.profileImage} />
+                  <img
+                    className="p-10"
+                    src={
+                      profileObj.profileImage
+                        ? profileObj.profileImage
+                        : dummyImage
+                    }
+                  />
                 </div>
                 <div className="group-hover:pb-10 transition-all duration-500 delay-200">
                   <h1 className="font-semibold text-gray-700">

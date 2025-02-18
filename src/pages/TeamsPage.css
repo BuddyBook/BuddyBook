@@ -19,7 +19,7 @@ h1{
 .input {
   border-radius: 5px;
   border: 2px solid var(--main-color);
-  background-color:white;
+  background-color: white;
   font-size: 15px;
   font-weight: 600;
   color: var(--font-color);

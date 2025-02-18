@@ -2,7 +2,14 @@ import axios from "axios";
 import { API_URL } from "../config/api";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Users, Trash2, Settings, BookOpen, UserPen, Smile } from "lucide-react"; // Import icons
+import {
+  Users,
+  Trash2,
+  Settings,
+  BookOpen,
+  UserPen,
+  Smile,
+} from "lucide-react"; // Import icons
 
 import "../pages/TeamsPage.css";
 import Loader from "../components/Loader";
@@ -157,7 +164,7 @@ function TeamsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {teams.map((team, index) => {
             const colors = colorSets[index % colorSets.length]; // Use modulo for color cycling
-            console.log(team)
+            console.log(team);
             return (
               <div
                 key={team.id}
@@ -218,7 +225,7 @@ function TeamsPage() {
                     type="text"
                     value={teamName}
                     onChange={(e) => setTeamName(e.target.value)}
-                    className="input  mt-2 p-2 w-full border border-gray-300 rounded-md focus:ring-pink-800 focus:border-pink-500 text-center"
+                    className="mt-2 p-2 w-full border-2 border-black bg-gray-100 border-gray-30 rounded-md text-center"
                     required
                   />
                 </div>
@@ -232,7 +239,7 @@ function TeamsPage() {
                       type="text"
                       value={createdBy}
                       onChange={(e) => setCreatedBy(e.target.value)}
-                      className="input mt-2 p-2 w-full border border-gray-300 rounded-md focus:ring-pink-800 focus:border-pink-500 text-center"
+                      className="mt-2 p-2 w-full border-2 border-black bg-gray-100 rounded-md focus:ring-pink-800 focus:border-pink-500 text-center"
                       required
                     />
 
@@ -252,10 +259,7 @@ function TeamsPage() {
                 )}
 
                 <div className="flex justify-around mt-6 space-x-4">
-                  <button
-                    type="submit"
-                    className="button-confirm"
-                  >
+                  <button type="submit" className="button-confirm">
                     {editingTeam ? "Update" : "Create Team"}
                   </button>
                   <button

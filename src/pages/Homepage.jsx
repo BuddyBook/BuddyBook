@@ -1,8 +1,23 @@
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { NavLink, useNavigate } from "react-router-dom";
+import { auth } from "../utility/firebase";
 
 //TODO Tailwind classes not applying correctly
 function Homepage() {
+  const [signInWithGoogle, credentials, signInLoading, signInError] =
+    useSignInWithGoogle(auth);
+
   const navigate = useNavigate();
+
+  const handleLogin = () => {
+    if (signInLoading) {
+      return;
+    }
+    signInWithGoogle().then((response) => {
+      console.log(response);
+      navigate("/teams");
+    });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-yellow-50 to-orange-50 p-8 flex flex-col justify-center items-center text-center p-6">
@@ -21,10 +36,10 @@ function Homepage() {
           in and leave your mark!
         </p>
         <button
-          onClick={() => navigate("/teams")}
+          onClick={handleLogin}
           className="bg-pastelBlue hover:bg-vibrantPurple font-bold py-2 px-6 rounded-full transition duration-300"
         >
-          View Teams
+          Get Started
         </button>
       </div>
     </div>

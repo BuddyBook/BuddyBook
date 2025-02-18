@@ -4,6 +4,7 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../config/api";
 import { useState } from "react";
 import { ArrowBigLeft } from "lucide-react";
+import BackButton from "../components/backButton";
 
 function CreateProfilePage() {
   const { teamId } = useParams();
@@ -61,15 +62,7 @@ function CreateProfilePage() {
   return (
     <div className="flex flex-col justify-center items-center text-center p-6">
       {/* Back Button */}
-      <div className="w-full max-w-2xl mr-25 mb-2">
-        <NavLink
-          to={`/teams/${teamId}`}
-          className="text-gray-600 hover:text-gray-900 flex items-center"
-        >
-          <ArrowBigLeft size={30} strokeWidth={1.5} className="mr-2" />
-          Back to Team
-        </NavLink>
-      </div>
+      <BackButton text="Back to Team" to={`/teams/${teamId}`} />
 
       <div>
         <form className="form" onSubmit={handleSubmit}>

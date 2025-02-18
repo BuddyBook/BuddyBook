@@ -6,6 +6,7 @@ import { API_URL } from "../config/api";
 import "../pages/MembersPage.css";
 import Loader from "../components/Loader";
 import { ArrowBigLeft, User } from "lucide-react";
+import BackButton from "../components/backButton";
 
 function MembersPage() {
   const { id } = useParams();
@@ -128,15 +129,11 @@ function MembersPage() {
           Add Your Profile
         </button>
       </NavLink>
+
       <div className="w-full max-w-2xl ml-30 mb-30">
-        <NavLink
-          to={`/teams/${id}`}
-          className="text-gray-600 hover:text-gray-900 flex items-center"
-        >
-          <ArrowBigLeft size={30} strokeWidth={1.5} className="mr-2" />
-          Back to Team
-        </NavLink>
+        <BackButton text="Back to Teams" to="/teams" />
       </div>
+
       <div className="flex justify-evenly flex-wrap gap-6">
         {members.map((profileObj) => {
           // Assign a unique random color set to each card

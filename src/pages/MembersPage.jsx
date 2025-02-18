@@ -94,7 +94,6 @@ function MembersPage() {
       .get(`${API_URL}/teams/${id}.json`)
       .then((response) => {
         const { members: teamMembers, ...teamData } = response.data;
-        console.log(response.data);
         setTeam(teamData);
 
         if (teamMembers) {

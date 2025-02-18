@@ -2,18 +2,23 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../config/api";
-import { Trash2, ArrowBigLeft, UserPen } from "lucide-react";
+import { Trash2, UserPen } from "lucide-react";
 import ReactionButtons from "../components/ReactionButtons";
 
 import dummyImage from "../assets/images/dummy-profile-image.png";
 import Loader from "../components/Loader";
 import "./ProfileDetailPage.css";
 import BackButton from "../components/backButton";
+import CustomAnswer from "../components/CustomAnswer";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../utility/firebase";
 
 function Profile() {
   const { profileId } = useParams();
   const { teamId } = useParams();
   const [profile, setProfile] = useState(null);
+
+  const [user] = useAuthState(auth);
 
   const navigate = useNavigate();
 
@@ -46,6 +51,8 @@ function Profile() {
       </div>
     );
   }
+
+  console.log(profile);
 
   return (
     <div className="profile-page p-4 md:p-8">
@@ -81,10 +88,33 @@ function Profile() {
           </div>
 
           <div className="profile-questions">
-            <h2>My Questions</h2>
+            <h2>Question 1</h2>
             <div className="question-box">
               <p>{profile.question1}</p>
               {/* Other questions */}
+            </div>
+          </div>
+
+          <div className="profile-questions">
+            <h2>Question 2</h2>
+            <div className="question-box">
+              <p>{profile.question2}</p>
+            </div>
+          </div>
+
+          <div className="profile-questions">
+            <h2>{profile.customQuestion}</h2>
+            <div className="question-box">
+              <CustomAnswer teamId={teamId} profileId={profileId} user={user} />
+              <div>
+                {Object.keys(profile.customAnswers).map((key) => {
+                  return (
+                    <div key={key}>
+                      <p>{profile.customAnswers[key].answer}</p>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

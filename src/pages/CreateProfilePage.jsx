@@ -1,9 +1,8 @@
 import "../pages/CreateProfilePage.css";
 import axios from "axios";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../config/api";
 import { useState } from "react";
-import { ArrowBigLeft } from "lucide-react";
 import BackButton from "../components/backButton";
 
 function CreateProfilePage() {
@@ -27,8 +26,16 @@ function CreateProfilePage() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const { name, place, age, hobbies, linkedIn, question1, question2 } =
-      event.target.elements;
+    const {
+      name,
+      place,
+      age,
+      hobbies,
+      linkedIn,
+      question1,
+      question2,
+      customQuestion,
+    } = event.target.elements;
 
     const newProfile = {
       name: name.value,
@@ -38,7 +45,7 @@ function CreateProfilePage() {
       linkedIn: linkedIn.value,
       question1: question1.value,
       question2: question2.value,
-
+      customQuestion: customQuestion.value,
       profileImage: imageBase64,
     };
 
@@ -121,6 +128,20 @@ function CreateProfilePage() {
                   If your life had a theme song, what would it be?
                 </label>
                 <input className="input" name="question2" type="text" />
+              </div>
+
+              {/* Custom Question Section */}
+              <div className="flex flex-col gap-15 w-2xs">
+                <div className="flex flex-col">
+                  <label className="text-center">
+                    Create Your Own Question:
+                    <input
+                      className="input"
+                      name="customQuestion"
+                      type="text"
+                    />
+                  </label>
+                </div>
               </div>
 
               <div className="flex flex-col">

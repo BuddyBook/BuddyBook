@@ -1,4 +1,4 @@
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { useAuthState, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { NavLink, useNavigate } from "react-router-dom";
 import { auth } from "../utility/firebase";
 
@@ -7,9 +7,15 @@ function Homepage() {
   const [signInWithGoogle, credentials, signInLoading, signInError] =
     useSignInWithGoogle(auth);
 
+  const [user] = useAuthState(auth);
+
   const navigate = useNavigate();
 
   const handleLogin = () => {
+    if (user) {
+      navigate("/teams");
+      return;
+    }
     if (signInLoading) {
       return;
     }
@@ -20,7 +26,7 @@ function Homepage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-yellow-50 to-orange-50 p-8 flex flex-col justify-center items-center text-center p-6">
+    <div className="min-h-screen bg-gradient-to-br p-8 flex flex-col justify-center items-center text-center">
       <div className="bg-white bg-opacity-90 p-6 rounded-xl shadow-xl border-4 border-pastelYellow">
         <p className="font-handwriting text-sm mb-2 text-vibrantPurple">
           Created by Julia Solias & Uzma Shaik.

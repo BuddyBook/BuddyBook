@@ -121,7 +121,7 @@ function MembersPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-yellow-50 to-orange-10 p-8">
       <h2 className="text-2xl font-bold">Team Name: {team.teamName}</h2>
-      <h1 className="text-xs">Created by : {team.createdBy} </h1>
+      <h1 className="text-xs">Created by {team.createdBy} </h1>
       <NavLink to={`/profile/create/${id}`}>
         <button className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-full mb-8 transition duration-300 shadow-md">
           Add Your Profile

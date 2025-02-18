@@ -2,7 +2,7 @@ import axios from "axios";
 import { API_URL } from "../config/api";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Users, Trash2, Settings, BookOpen, Pencil, Smile } from "lucide-react"; // Import icons
+import { Users, Trash2, Settings, BookOpen, UserPen, Smile } from "lucide-react"; // Import icons
 
 import "../pages/TeamsPage.css";
 import Loader from "../components/Loader";
@@ -157,6 +157,7 @@ function TeamsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {teams.map((team, index) => {
             const colors = colorSets[index % colorSets.length]; // Use modulo for color cycling
+            console.log(team)
             return (
               <div
                 key={team.id}
@@ -169,14 +170,17 @@ function TeamsPage() {
                 <h2 className="text-lg font-medium mb-2 text-gray-800 relative z-10">
                   Team: {team.teamName}
                 </h2>
-                <p className="text-sm mb-4 relative z-10">
+                <p className="text-sm mb-4 relative z-10 text-gray-600">
                   Created by: {team.createdBy}
+                </p>
+                <p className="text-sm mb-4 relative z-10 text-gray-800">
+                  {team.members ? Object.keys(team.members).length : 0} members
                 </p>
                 <button
                   onClick={() => navigate(`/teams/${team.id}`)}
                   className="text-sm border-1 border-gray-400 hover:text-gray-600 text-black font-bold py-1.5 px-3 rounded-full mb-4 transition duration-300 relative z-10"
                 >
-                  View Members
+                  View Team
                 </button>
                 <div className="flex justify-center space-x-4 relative z-10">
                   <button
@@ -185,7 +189,7 @@ function TeamsPage() {
                     }
                     className="text-xs bg-gray-300 hover:bg-gray-500 text-black font-bold py-1 px-3 rounded-full transition duration-300"
                   >
-                    <Settings className="w-4 h-4" />
+                    <UserPen className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => handleDelete(team.id)}

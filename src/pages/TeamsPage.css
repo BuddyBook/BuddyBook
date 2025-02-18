@@ -40,15 +40,12 @@ h1{
   cursor: pointer;
 }
 
-
-/*.button-confirm:hover {
-  background-color: var(--hover-color);
-}
-.button-go-back:hover {
-  background-color: var(--hover-color);
-} */
-
 .button-confirm:active {
+  box-shadow: 0px 0px var(--main-color);
+  transform: translate(3px, 3px);
+}
+
+.button-go-back:active {
   box-shadow: 0px 0px var(--main-color);
   transform: translate(3px, 3px);
 }

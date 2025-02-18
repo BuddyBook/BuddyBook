@@ -2,7 +2,7 @@ import axios from "axios";
 import { API_URL } from "../config/api";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Users, Trash2, Settings, BookOpen, Pencil, Smile } from "lucide-react"; // Import icons
+import { Users, Trash2, Settings, BookOpen, UserPen, Smile } from "lucide-react"; // Import icons
 
 import "../pages/TeamsPage.css";
 import Loader from "../components/Loader";
@@ -189,7 +189,7 @@ function TeamsPage() {
                     }
                     className="text-xs bg-gray-300 hover:bg-gray-500 text-black font-bold py-1 px-3 rounded-full transition duration-300"
                   >
-                    <Settings className="w-4 h-4" />
+                    <UserPen className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => handleDelete(team.id)}

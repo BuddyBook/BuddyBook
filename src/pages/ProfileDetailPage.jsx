@@ -2,9 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../config/api";
+import {Trash2} from "lucide-react"; 
 
 import dummyImage from "../assets/images/dummy-profile-image.png";
 import Loader from "../components/Loader";
+import "./ProfileDetailPage.css";
 
 function Profile() {
   const { profileId } = useParams();
@@ -48,37 +50,45 @@ function Profile() {
   // add editing functionality only on more individual topics (either with the full form OR )
 
   return (
-    <div>
-      <h1 className="text-2xl">This is the profile page</h1>
-      <section>
-        <h1>My name: {profile.name}</h1>
-        <h1>My age: {profile.age}</h1>
-        <h2>Where I am from: {profile.place}</h2>
-        <h2>What my hobbies are: {profile.hobbies}</h2>
-      </section>
-      <section>
-        <img src={profile.profileImage ? profile.profileImage : dummyImage} />
-      </section>
-      <section>
-        <p>{profile.question1}</p>
-      </section>
-      <section>
-        <NavLink to={`/teams/${teamId}/members/${profileId}/edit`}>
-          <button
-            type="button"
-            className="text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-          >
-            Edit Profile
-          </button>
-        </NavLink>
-        <button
-          type="button"
-          className="text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-          onClick={handleDelete}
-        >
-          Delete Profile
+    <div className="profile-page">
+      <div className="profile-header">
+        <img
+          src={profile.profileImage ? profile.profileImage : dummyImage}
+          alt="Profile"
+          className="profile-image"
+        />
+        
+        <div className="profile-info">
+          <h1>Name: {profile.name}</h1>
+          <h1>Age: {profile.age}</h1>
+          <h2>Country: {profile.place}</h2>
+          <h2>Hobbies: {profile.hobbies}</h2>
+        </div>
+      </div>
+
+      <div className="profile-questions">
+        <h2>My Questions</h2>
+        <div className="question-box">
+          <p>{profile.question1}</p>
+          {/* Add more questions as needed */}
+        </div>
+      </div>
+
+      <div className="confession-box">
+        <p>Confession Box</p>
+      </div>
+
+      <div className="button-container">
+      <button className="text-red-500" onClick={handleDelete}>
+          <Trash2 />
         </button>
-      </section>
+        <NavLink to={`/teams/${teamId}/members/${profileId}/edit`}>
+          <button className="button-confirm">Edit Profile</button>
+        </NavLink>
+        <button onClick={() => navigate(-1)} className="button-go-back">
+          Go Back
+        </button>
+      </div>
     </div>
   );
 }

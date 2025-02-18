@@ -42,16 +42,17 @@ function TeamsPage() {
     event.preventDefault();
 
     if (editingTeam) {
-      axios.get(`${API_URL}/teams/${editingTeam}.json`)
+      axios
+        .get(`${API_URL}/teams/${editingTeam}.json`)
         .then((response) => {
           const existingData = response.data;
-  
+
           const teamData = {
             ...existingData, // Retain existing members and other data
             teamName,
             createdBy,
           };
-  
+
           return axios.put(`${API_URL}/teams/${editingTeam}.json`, teamData);
         })
         .then(() => {
@@ -63,9 +64,7 @@ function TeamsPage() {
           console.error("Error updating team:", error);
           alert("Failed to update team. Please try again.");
         });
-    }
-    
-    else {
+    } else {
       const teamData = {
         teamName,
         timestamp: editingTeam ? timestamp : new Date().toLocaleString(),
@@ -111,9 +110,19 @@ function TeamsPage() {
       border: "border-yellow-200",
       icon: "text-yellow-400",
     },
+    {
+      bg: "bg-purple-100",
+      border: "border-purple-200",
+      icon: "text-purple-400",
+    },
+    {
+      bg: "bg-orange-100",
+      border: "border-orange-200",
+      icon: "text-orange-400",
+    },
+    { bg: "bg-pink-100", border: "border-pink-200", icon: "text-pink-400" },
     { bg: "bg-blue-100", border: "border-blue-200", icon: "text-blue-400" },
     { bg: "bg-green-100", border: "border-green-200", icon: "text-green-400" },
-    { bg: "bg-pink-100", border: "border-pink-200", icon: "text-pink-400" },
   ];
 
   if (teams === null) {
@@ -191,63 +200,63 @@ function TeamsPage() {
         </div>
 
         {showModal && (
-          <div className="fixed inset-0 bg-white bg-opacity-100 flex justify-center items-center">
-            <div className="bg-yellow-100 p-8 rounded-lg shadow-lg max-w-md w-full relative">
-              <div className="absolute inset-0 border-4 border-yellow-200 pointer-events-none rounded-xl"></div>
-              <h1 className="text-2xl font-semibold text-center text-purple-600 mb-6">
+          <div className="fixed inset-0 bg-white flex justify-center items-center">
+            <div className="form-new bg-pink-100 p-8 rounded-lg shadow-lg max-w-md w-full relative border-5 border-pink-300">
+              <h1 className="text-2xl font-semibold text-center text-pink-600 mb-6">
                 {editingTeam ? "Edit Team Name" : "Create New Team"}
               </h1>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 text-xl">
+                  <label className="block text-ml font-medium text-gray-700 text-center">
                     Team Name
                   </label>
                   <input
                     type="text"
                     value={teamName}
                     onChange={(e) => setTeamName(e.target.value)}
-                    className="mt-4 text-center block w-full border border-gray-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 p-4"
+                    className="input  mt-2 p-2 w-full border border-gray-300 rounded-md focus:ring-pink-800 focus:border-pink-500 text-center"
                     required
                   />
                 </div>
 
                 {!editingTeam && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">
+                    <label className="block text-sm font-medium text-gray-700 text-center">
                       Created By
                     </label>
                     <input
                       type="text"
                       value={createdBy}
                       onChange={(e) => setCreatedBy(e.target.value)}
-                      className="mt-4 text-center block w-full border border-gray-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500"
+                      className="input mt-2 p-2 w-full border border-gray-300 rounded-md focus:ring-pink-800 focus:border-pink-500 text-center"
                       required
                     />
 
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700">
+                    <div className="mt-4">
+                      <label className="block text-sm font-medium text-gray-700 text-center">
                         Timestamp
                       </label>
                       <input
                         type="text"
+                        placeholder={new Date().toLocaleDateString()}
                         value={timestamp}
                         readOnly
-                        className="mt-4 text-center block w-full border border-gray-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 bg-gray-100"
+                        className="mt-2 p-2 w-full border border-gray-300 rounded-md bg-gray-100 text-center"
                       />
                     </div>
                   </div>
                 )}
 
-                <div className="space-y-4">
+                <div className="flex justify-around mt-6 space-x-4">
                   <button
                     type="submit"
-                    className="hover:text-blue-600 hover:bg-blue-100 text-blue-400  font-bold py-2 px-6 rounded-full transition duration-300 w-full"
+                    className="button-confirm"
                   >
-                    {editingTeam ? "Update Team Name" : "Create Team"}
+                    {editingTeam ? "Update" : "Create Team"}
                   </button>
                   <button
                     onClick={() => setShowModal(false)}
-                    className="hover:text-red-600 hover:bg-red-100 text-red-400 font-bold py-2 px-6 rounded-full transition duration-300 w-full"
+                    className="button-go-back"
                   >
                     Cancel
                   </button>
@@ -260,5 +269,4 @@ function TeamsPage() {
     </div>
   );
 }
-
 export default TeamsPage;

@@ -5,3 +5,50 @@ h1{
   margin-bottom: 30px;
   color:#101010d6
 }
+
+.form-new {
+  --bg-color: rgb(244, 212, 243);
+  --main-color: black;
+  padding: 30px;
+  background: rgb(244, 212, 243);
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
+}
+
+.input {
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--font-color);
+  padding: 5px 10px;
+  outline: none;
+}
+
+.button-confirm, .button-go-back {
+  margin: 50px auto 0 auto;
+  width: 120px;
+  height: 40px;
+  border-radius: 20px;
+  border: 2px solid var(--main-color);
+  background-color: rgb(242, 237, 240);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--font-color);
+  cursor: pointer;
+}
+
+
+/*.button-confirm:hover {
+  background-color: var(--hover-color);
+}
+.button-go-back:hover {
+  background-color: var(--hover-color);
+} */
+
+.button-confirm:active {
+  box-shadow: 0px 0px var(--main-color);
+  transform: translate(3px, 3px);
+}

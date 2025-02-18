@@ -30,7 +30,7 @@ function Profile() {
   const handleDelete = () => {
     axios
       .delete(`${API_URL}/teams/${teamId}/members/${profileId}.json`)
-      .then((response) => {
+      .then(() => {
         navigate(-1);
       })
       .catch((error) => {
@@ -47,49 +47,60 @@ function Profile() {
   }
 
   return (
-    <div className="profile-page">
+<div className="profile-page p-4 md:p-8">
+  <div className="flex justify-between items-center mb-4">
+    <button onClick={() => navigate(-1)}>
+      <ArrowBigLeft />
+    </button>
+    <div className="flex space-x-2 hover:pointer">
+      <NavLink to={`/teams/${teamId}/members/${profileId}/edit`}>
+        <button>
+          <UserPen />
+        </button>
+      </NavLink>
+      <button className="text-red-500" onClick={handleDelete}>
+        <Trash2 />
+      </button>
+    </div>
+  </div>
 
-      <ReactionButtons />
+  <h1 className="text-3xl font-bold mb-4">Your Profile</h1>
 
-      <div className="profile-header">
-        <img
-          src={profile.profileImage ? profile.profileImage : dummyImage}
-          alt="Profile"
-          className="profile-image"
-        />
+  <div className="flex flex-col md:flex-row items-start mb-4">
+    <img
+      src={profile.profileImage || dummyImage}
+      alt="Profile"
+      className="profile-image mb-4 md:mb-0 md:mr-4"
+    />
 
-        <div className="profile-info">
-          <h1>Name: {profile.name}</h1>
-          <h1>Age: {profile.age}</h1>
-          <h2>Country: {profile.place}</h2>
-          <h2>Hobbies: {profile.hobbies}</h2>
-        </div>
+    <div className="flex-1">
+      <div className="profile-info">
+        <h1>Name: {profile.name}</h1>
+        <h1>Age: {profile.age}</h1>
+        <h2>Country: {profile.place}</h2>
+        <h2>Hobbies: {profile.hobbies}</h2>
       </div>
 
       <div className="profile-questions">
         <h2>My Questions</h2>
         <div className="question-box">
           <p>{profile.question1}</p>
-          {/* Other questions*/}
+          {/* Other questions */}
         </div>
       </div>
-
-      <div className="confession-box">
-        <p>Confession Box</p>
-      </div>
-
-      <div className="button-container">
-        <button className="text-red-500" onClick={handleDelete}>
-          <Trash2 />
-        </button>
-        <NavLink to={`/teams/${teamId}/members/${profileId}/edit`}>
-          <button ><UserPen/></button>
-        </NavLink>
-        <button onClick={() => navigate(-1)}>
-        <ArrowBigLeft/>
-        </button>
-      </div>
     </div>
+  </div>
+
+  <ReactionButtons className="reaction-buttons" />
+
+  <div className="flex-1 bg-gray-100 p-4 rounded-lg shadow-lg mt-4">
+    <h2 className="text-xl font-semibold mb-2">Messages from Colleagues</h2>
+    <div className="message-box">
+      {/* Messages to be displayed */}
+    </div>
+  </div>
+</div>
   );
 }
+
 export default Profile;

@@ -11,6 +11,7 @@ function TeamsPage() {
   const [teams, setTeams] = useState(null);
   const [teamName, setTeamName] = useState("");
   const [createdBy, setCreatedBy] = useState("");
+  const [timestamp, setTimestamp] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [editingTeam, setEditingTeam] = useState(null);
   const navigate = useNavigate();
@@ -39,14 +40,20 @@ function TeamsPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const teamData = {
-      teamName,
-      timestamp: editingTeam ? timestamp : new Date().toLocaleString(),
-      createdBy,
-    };
+
     if (editingTeam) {
-      axios
-        .put(`${API_URL}/teams/${editingTeam}.json`, { teamName })
+      axios.get(`${API_URL}/teams/${editingTeam}.json`)
+        .then((response) => {
+          const existingData = response.data;
+  
+          const teamData = {
+            ...existingData, // Retain existing members and other data
+            teamName,
+            createdBy,
+          };
+  
+          return axios.put(`${API_URL}/teams/${editingTeam}.json`, teamData);
+        })
         .then(() => {
           fetchTeams();
           setShowModal(false);
@@ -56,7 +63,15 @@ function TeamsPage() {
           console.error("Error updating team:", error);
           alert("Failed to update team. Please try again.");
         });
-    } else {
+    }
+    
+    else {
+      const teamData = {
+        teamName,
+        timestamp: editingTeam ? timestamp : new Date().toLocaleString(),
+        createdBy,
+      };
+
       axios
         .post(`${API_URL}/teams.json`, teamData)
         .then((response) => {
@@ -156,7 +171,9 @@ function TeamsPage() {
                 </button>
                 <div className="flex justify-center space-x-4 relative z-10">
                   <button
-                    onClick={() => handleEdit(team.id, team.teamName)}
+                    onClick={() =>
+                      handleEdit(team.id, team.teamName, team.timestamp)
+                    }
                     className="text-xs bg-gray-300 hover:bg-gray-500 text-black font-bold py-1 px-3 rounded-full transition duration-300"
                   >
                     <Settings className="w-4 h-4" />
@@ -206,6 +223,18 @@ function TeamsPage() {
                       className="mt-4 text-center block w-full border border-gray-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500"
                       required
                     />
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700">
+                        Timestamp
+                      </label>
+                      <input
+                        type="text"
+                        value={timestamp}
+                        readOnly
+                        className="mt-4 text-center block w-full border border-gray-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 bg-gray-100"
+                      />
+                    </div>
                   </div>
                 )}
 

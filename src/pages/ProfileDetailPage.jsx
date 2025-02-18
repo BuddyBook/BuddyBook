@@ -2,7 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../config/api";
-import { Trash2 } from "lucide-react";
+import { Trash2, ArrowBigLeft, UserPen } from "lucide-react";
+import ReactionButtons from "../components/ReactionButtons";
 
 import dummyImage from "../assets/images/dummy-profile-image.png";
 import Loader from "../components/Loader";
@@ -47,6 +48,9 @@ function Profile() {
 
   return (
     <div className="profile-page">
+
+      <ReactionButtons />
+
       <div className="profile-header">
         <img
           src={profile.profileImage ? profile.profileImage : dummyImage}
@@ -66,7 +70,7 @@ function Profile() {
         <h2>My Questions</h2>
         <div className="question-box">
           <p>{profile.question1}</p>
-          {/* Add more questions as needed */}
+          {/* Other questions*/}
         </div>
       </div>
 
@@ -79,10 +83,10 @@ function Profile() {
           <Trash2 />
         </button>
         <NavLink to={`/teams/${teamId}/members/${profileId}/edit`}>
-          <button className="button-confirm">Edit Profile</button>
+          <button ><UserPen/></button>
         </NavLink>
-        <button onClick={() => navigate(-1)} className="button-go-back">
-          Go Back
+        <button onClick={() => navigate(-1)}>
+        <ArrowBigLeft/>
         </button>
       </div>
     </div>

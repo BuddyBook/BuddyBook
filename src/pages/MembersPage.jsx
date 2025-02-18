@@ -119,7 +119,7 @@ function MembersPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-yellow-50 to-orange-50 p-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-yellow-50 to-orange-10 p-8">
       <h2 className="text-2xl font-bold">Team Name: {team.teamName}</h2>
       <h1 className="text-xs">Created by : {team.createdBy} </h1>
       <NavLink to={`/profile/create/${id}`}>
@@ -163,7 +163,7 @@ function MembersPage() {
                 <NavLink to={`/teams/${id}/profile/${profileObj.id}`}>
                   <button
                     className="px-4 py-2
- bg-transparent border border-black-600 rounded-full text-xs font-bold text-gray-700 hover:bg-gray-100 transition-colors duration-300 shadow-sm"
+ bg-transparent border border-gray-400 rounded-full text-xs font-bold text-gray-700 hover:bg-gray-100 transition-colors duration-300 shadow-sm"
                   >
                     View Profile
                   </button>

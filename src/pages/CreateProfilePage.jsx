@@ -98,21 +98,6 @@ function CreateProfilePage() {
               <label className="text-left">What are your Hobbies</label>
               <input className="input" name="hobbies" type="text" />
             </div>
-
-            <div className="flex flex-col">
-              <label className="text-left">
-                If this course had a mascot, what would it be?
-              </label>
-              <input className="input" name="question1" type="text" />
-            </div>
-
-            <div className="flex flex-col">
-              <label className="text-left">
-                You wake up in a video game world—what game is it, and what's
-                your first move?
-              </label>
-              <input className="input" name="question2" type="text" />
-            </div>
           </div>
 
           {/* right side container */}

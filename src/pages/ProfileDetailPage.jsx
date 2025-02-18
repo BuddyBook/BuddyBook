@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../config/api";
-import {Trash2} from "lucide-react"; 
+import { Trash2 } from "lucide-react";
 
 import dummyImage from "../assets/images/dummy-profile-image.png";
 import Loader from "../components/Loader";
@@ -45,10 +45,6 @@ function Profile() {
     );
   }
 
-  //TODO:
-  // add deleting functionality for FULL profile (top right/left on the screen)
-  // add editing functionality only on more individual topics (either with the full form OR )
-
   return (
     <div className="profile-page">
       <div className="profile-header">
@@ -57,7 +53,7 @@ function Profile() {
           alt="Profile"
           className="profile-image"
         />
-        
+
         <div className="profile-info">
           <h1>Name: {profile.name}</h1>
           <h1>Age: {profile.age}</h1>
@@ -79,7 +75,7 @@ function Profile() {
       </div>
 
       <div className="button-container">
-      <button className="text-red-500" onClick={handleDelete}>
+        <button className="text-red-500" onClick={handleDelete}>
           <Trash2 />
         </button>
         <NavLink to={`/teams/${teamId}/members/${profileId}/edit`}>

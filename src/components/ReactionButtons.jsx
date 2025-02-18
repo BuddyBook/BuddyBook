@@ -26,7 +26,7 @@ function ReactionButtons() {
   ];
 
   return (
-    <div className="flex justify-center items-center text-2xl shadow-xl z-10 bg-white gap-2 p-2 rounded-full">
+    <div className="flex justify-center items-center text-xl shadow-xl z-10 bg-white gap-2 p-2 rounded-full">
       {reactions.map((reaction, index) => (
         <button
           key={index}

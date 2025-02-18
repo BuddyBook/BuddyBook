@@ -5,7 +5,7 @@ import { API_URL } from "../config/api";
 
 import "../pages/MembersPage.css";
 import Loader from "../components/Loader";
-import { User } from "lucide-react";
+import { ArrowBigLeft, User } from "lucide-react";
 
 function MembersPage() {
   const { id } = useParams();
@@ -119,14 +119,24 @@ function MembersPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-yellow-50 to-orange-10 p-8">
+    <div>
       <h2 className="text-2xl font-bold">Team Name: {team.teamName}</h2>
       <h1 className="text-xs">Created by {team.createdBy} </h1>
+
       <NavLink to={`/profile/create/${id}`}>
         <button className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-full mb-8 transition duration-300 shadow-md">
           Add Your Profile
         </button>
       </NavLink>
+      <div className="w-full max-w-2xl ml-30 mb-30">
+        <NavLink
+          to={`/teams/${id}`}
+          className="text-gray-600 hover:text-gray-900 flex items-center"
+        >
+          <ArrowBigLeft size={30} strokeWidth={1.5} className="mr-2" />
+          Back to Team
+        </NavLink>
+      </div>
       <div className="flex justify-evenly flex-wrap gap-6">
         {members.map((profileObj) => {
           // Assign a unique random color set to each card
@@ -135,7 +145,7 @@ function MembersPage() {
           return (
             <div
               key={profileObj.id}
-              className={`${colors.bg} ${colors.border} rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden h-55 w-56 flex flex-col items-center p-4`} // Smaller card size
+              className={`${colors.bg} ${colors.border} border-2 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden h-55 w-56 flex flex-col items-center p-4`} // Smaller card size
             >
               {/* Image Container */}
               <div className="w-20 h-20 overflow-hidden rounded-full flex items-center justify-center">

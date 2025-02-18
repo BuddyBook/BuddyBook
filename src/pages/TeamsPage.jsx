@@ -141,7 +141,7 @@ function TeamsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-yellow-50 to-orange-50 p-8">
+    <div>
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold text-blue-600 mb-4 mt-4">
           Teams Page

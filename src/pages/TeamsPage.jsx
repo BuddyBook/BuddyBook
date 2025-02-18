@@ -161,7 +161,7 @@ function TeamsPage() {
             return (
               <div
                 key={team.id}
-                className={`rounded-lg p-6 shadow-lg transform transition-all duration-300 hover:scale-105 relative overflow-hidden ${colors.bg} ${colors.border}`}
+                className={`rounded-lg p-6 shadow-lg transform transition-all hover:shadow-2xl transition-shadow duration-300 relative overflow-hidden ${colors.bg} ${colors.border}`}
               >
                 <div className="absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-20"></div>
                 <div className="flex justify-center mb-4 relative z-10">

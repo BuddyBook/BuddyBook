@@ -22,7 +22,7 @@ function Profile() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const getProfile = () => {
     axios
       .get(`${API_URL}/teams/${teamId}/members/${profileId}.json`)
       .then((response) => {
@@ -31,6 +31,10 @@ function Profile() {
       .catch((e) => {
         console.log("Error", e);
       });
+  };
+
+  useEffect(() => {
+    getProfile();
   }, []);
 
   const handleDelete = () => {
@@ -105,15 +109,21 @@ function Profile() {
           <div className="profile-questions">
             <h2>{profile.customQuestion}</h2>
             <div className="question-box">
-              <CustomAnswer teamId={teamId} profileId={profileId} user={user} />
+              <CustomAnswer
+                teamId={teamId}
+                profileId={profileId}
+                user={user}
+                onRefresh={() => getProfile()}
+              />
               <div>
-                {Object.keys(profile.customAnswers).map((key) => {
-                  return (
-                    <div key={key}>
-                      <p>{profile.customAnswers[key].answer}</p>
-                    </div>
-                  );
-                })}
+                {profile.customAnswers &&
+                  Object.keys(profile.customAnswers).map((key) => {
+                    return (
+                      <div key={key}>
+                        <p>{profile.customAnswers[key].answer}</p>
+                      </div>
+                    );
+                  })}
               </div>
             </div>
           </div>

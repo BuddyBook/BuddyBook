@@ -4,8 +4,8 @@ import axios from "axios";
 import { useState } from "react";
 import { API_URL } from "../config/api";
 
-function CustomAnswer({ teamId, profileId, user }) {
-  const [answer, setAnswer] = useState();
+function CustomAnswer({ teamId, profileId, user, onRefresh }) {
+  const [answer, setAnswer] = useState("");
 
   const handleChange = (e) => {
     setAnswer(e.target.value);
@@ -28,6 +28,7 @@ function CustomAnswer({ teamId, profileId, user }) {
       .then((response) => {
         console.log(response.data);
         setAnswer("");
+        onRefresh();
       })
       .catch((error) => {
         console.log("Error", error);

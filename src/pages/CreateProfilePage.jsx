@@ -162,6 +162,7 @@ function CreateProfilePage() {
         </div>
 
         <button className="button-confirm">Let's go</button>
+        <button className="button-go-back">Go Back</button>
       </form>
     </div>
   );

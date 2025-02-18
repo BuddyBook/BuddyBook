@@ -1,10 +1,10 @@
 /* From Uiverse.io */ 
 .form {
    
-    --bg-color: beige;
+    --bg-color: rgb(255, 255, 255);
     --main-color: black;
     padding: 20px;
-    background: rgb(221, 216, 208);
+    background: rgb(243, 238, 231);
     border-radius: 5px;
     border: 2px solid var(--main-color);
     box-shadow: 4px 4px var(--main-color);
@@ -48,16 +48,19 @@
     transform: translate(3px, 3px);
   }
   
-  .button-confirm {
+  .button-confirm,.button-go-back {
     margin: 50px auto 0 auto;
     width: 120px;
     height: 40px;
-    border-radius: 5px;
+    border-radius: 20px;
     border: 2px solid var(--main-color);
-    background-color: rgb(247, 247, 247);
+    background-color: rgb(242, 237, 240);
     font-size: 17px;
     font-weight: 600;
     color: var(--font-color);
     cursor: pointer;
+    margin-right: 15px;
   }
+
+ 
   

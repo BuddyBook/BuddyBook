@@ -1,9 +1,10 @@
 export default function Loader() {
   return (
-    <div className="flex h-screen w-full items-center justify-center">
-      <div className="flex flex-col items-center space-y-4">
-        <div className="h-8 w-8 animate-spin text-gray-500 dark:text-gray-400" />
-        <p className="text-gray-500 dark:text-gray-400">Loading...</p>
+    <div className="w-full h-screen flex justify-center items-center">
+      <div className="w-full gap-x-2 flex justify-center items-center">
+        <div className="w-5 h-5 bg-[#d991c2] animate-pulse rounded-full"></div>
+        <div className="w-5 h-5 bg-[#9869b8] animate-pulse rounded-full"></div>
+        <div className="w-5 h-5 bg-[#6756cc] animate-pulse rounded-full"></div>
       </div>
     </div>
   );

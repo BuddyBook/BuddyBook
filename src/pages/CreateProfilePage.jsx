@@ -1,6 +1,6 @@
 import "../pages/CreateProfilePage.css";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../config/api";
 import { useState } from "react";
 
@@ -162,8 +162,15 @@ function CreateProfilePage() {
         </div>
 
         <button className="button-confirm">Let's go</button>
-        <button className="button-go-back">Go Back</button>
       </form>
+      <div>
+        <button
+          className="button-go-back"
+          onClick={() => navigate(`/teams/${teamId}`)}
+        >
+          Go Back
+        </button>
+      </div>
     </div>
   );
 }

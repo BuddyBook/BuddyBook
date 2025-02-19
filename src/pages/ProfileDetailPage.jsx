@@ -13,6 +13,7 @@ import CustomAnswer from "../components/CustomAnswer";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utility/firebase";
 import Comments from "../components/Comments";
+import LazyLoad from "../components/CardCarousalComponent";
 
 function Profile() {
   const { profileId, teamId } = useParams();
@@ -128,25 +129,23 @@ function Profile() {
                 Add your own answer below 😇
               </h1>
               <h2 className="font-semibold">{profile.customQuestion}</h2>
-              <div className="bg-gray-100 p-4 rounded-lg shadow-md mt-">
+              <div className="mt-4 flex justify-center">
+                <CustomAnswer
+                  teamId={teamId}
+                  profileId={profileId}
+                  user={user}
+                  onRefresh={() => getProfile()}
+                />
+              </div>
+              <div className="bg-white-100 h-auto w-auto rounded-lg shadow-md ">
                 <div className="mb-3">
-                  {profile.customAnswers &&
-                    Object.keys(profile.customAnswers).map((key) => (
-                      <div key={key} className="mb-2">
-                        <p className="text-sm text-gray-600">
-                          {profile.customAnswers[key].name}:{" "}
-                          {profile.customAnswers[key].answer}
-                        </p>
-                      </div>
-                    ))}
-                </div>
-                <div className="mt-4 flex justify-center">
-                  <CustomAnswer
-                    teamId={teamId}
-                    profileId={profileId}
-                    user={user}
-                    onRefresh={() => getProfile()}
-                  />
+                  {profile.customAnswers && (
+                    <LazyLoad
+                      list={Object.keys(profile.customAnswers).map(
+                        (key) => profile.customAnswers[key]
+                      )}
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -180,23 +179,6 @@ function Profile() {
                   </div>
                 );
               })}
-
-            {/* Reactions and Messages */}
-            <div className="mt-5">
-              <ReactionButtons
-                className="reaction-buttons mb-4"
-                teamId={teamId}
-                profileId={profileId}
-              />
-              <div className="bg-orange-100 p-4 rounded-lg shadow-lg">
-                <h2 className="text-xl font-semibold mb-2">
-                  Messages from Colleagues
-                </h2>
-                <div className="message-box overflow-y-auto h-64">
-                  {/* Messages to be displayed */}
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

@@ -89,7 +89,7 @@ function Profile() {
           </div>
 
           <div className="profile-questions">
-            <h2>Question 1</h2>
+            <h2>If this course had a mascot, what would it be?</h2>
             <div className="question-box">
               <p>{profile.question1}</p>
               {/* Other questions */}
@@ -97,7 +97,7 @@ function Profile() {
           </div>
 
           <div className="profile-questions">
-            <h2>Question 2</h2>
+            <h2>If your life had a theme song, what would it be?</h2>
             <div className="question-box">
               <p>{profile.question2}</p>
             </div>

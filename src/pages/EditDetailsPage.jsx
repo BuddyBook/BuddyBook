@@ -20,7 +20,7 @@ function EditProfilePage() {
     customQuestions: "",
   });
 
-  const [imageBase64, setImageBase64] = useState(null);
+  const [image, setImage] = useState(null);
 
   // Fetch existing profile when component loads
   useEffect(() => {
@@ -34,12 +34,29 @@ function EditProfilePage() {
   }, [profileId, teamId]);
 
   // Convert image to Base64
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event) => {
     const file = event.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => setImageBase64(reader.result);
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append(
+        "upload_preset",
+        import.meta.env.VITE_UNSIGNED_UPLOAD_PRESET
+      );
+      formData.append("cloud_name", import.meta.env.VITE_CLOUD_NAME);
+
+      try {
+        const response = await axios.post(
+          `https://api.cloudinary.com/v1_1/${
+            import.meta.env.VITE_CLOUD_NAME
+          }/upload`,
+          formData
+        );
+        // After successful upload, store the image URL
+        setImage(response.data.secure_url);
+      } catch (error) {
+        console.error("Error uploading the file:", error);
+      }
     }
   };
 
@@ -48,14 +65,14 @@ function EditProfilePage() {
     setProfile({ ...profile, [event.target.name]: event.target.value });
   };
 
-  const handleCancel = () => {
+  const handleCancel = (event) => {
     event.preventDefault();
     navigate(`/teams/${teamId}/profile/${profileId}`);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const updatedProfile = { ...profile, profileImage: imageBase64 };
+    const updatedProfile = { ...profile, profileImage: image };
 
     try {
       await axios.put(
@@ -209,11 +226,11 @@ function EditProfilePage() {
                   onChange={handleFileChange}
                 />
                 {/* Image Preview */}
-                {imageBase64 && (
+                {image && (
                   <div className="flex justify-center mt-4">
                     <img
-                      src={imageBase64}
-                      alt="Profile Preview"
+                      src={image}
+                      alt="my cloudinary image"
                       className="w-24 h-24 object-cover rounded-full border"
                     />
                   </div>

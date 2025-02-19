@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { API_URL } from "../config/api";
-import BackButton from "../components/backButton";
+import BackButton from "../components/BackButton";
 import Loader from "../components/Loader";
 
 function EditProfilePage() {

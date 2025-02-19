@@ -3,7 +3,7 @@ import { auth } from "../utility/firebase";
 import { NavLink, useNavigate } from "react-router-dom";
 import { House, LogOut } from "lucide-react";
 
-import logo from "../assets/images/logo/BuddyBook-pink-logo.png";
+import logo from "../assets/images/logo/BuddyBook-final.png";
 
 import "../components/Navbar.css";
 

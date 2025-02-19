@@ -21,6 +21,7 @@ function TeamsPage() {
   const [timestamp, setTimestamp] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [editingTeam, setEditingTeam] = useState(null);
+  const [loading, setLoading] = useState(true); // New state to track loading
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,10 +39,14 @@ function TeamsPage() {
             ...teamsObject[id],
           }));
           setTeams(teamsArr);
+        } else {
+          setTeams([]); // Set to an empty array if no teams are found
         }
+        setLoading(false); // Set loading to false after fetching
       })
       .catch((error) => {
         console.error("Error fetching teams:", error);
+        setLoading(false); // Ensure loading is set to false even on error
       });
   };
 
@@ -55,7 +60,7 @@ function TeamsPage() {
           const existingData = response.data;
 
           const teamData = {
-            ...existingData, // Retain existing members and other data
+            ...existingData,
             teamName,
             createdBy,
           };
@@ -132,7 +137,7 @@ function TeamsPage() {
     { bg: "bg-green-100", border: "border-green-200", icon: "text-green-400" },
   ];
 
-  if (teams === null) {
+  if (loading) {
     return (
       <div>
         <Loader />
@@ -161,53 +166,57 @@ function TeamsPage() {
           </button>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {teams.map((team, index) => {
-            const colors = colorSets[index % colorSets.length]; // Use modulo for color cycling
-            return (
-              <div
-                key={team.id}
-                className={`rounded-lg p-6 shadow-lg transform transition-all hover:shadow-2xl transition-shadow duration-300 relative overflow-hidden ${colors.bg} ${colors.border}`}
-              >
-                <div className="absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-20"></div>
-                <div className="flex justify-center mb-4 relative z-10">
-                  <Users className={`w-8 h-8 ${colors.icon}`} />
-                </div>
-                <h2 className="text-lg font-medium mb-2 text-gray-800 relative z-10">
-                  Team: {team.teamName}
-                </h2>
-                <p className="text-sm mb-4 relative z-10 text-gray-600">
-                  Created by: {team.createdBy}
-                </p>
-                <p className="text-sm mb-4 relative z-10 text-gray-800">
-                  {team.members ? Object.keys(team.members).length : 0} members
-                </p>
-                <button
-                  onClick={() => navigate(`/teams/${team.id}`)}
-                  className="text-sm border-1 border-gray-400 hover:text-gray-600 text-black font-bold py-1.5 px-3 rounded-full mb-4 transition duration-300 relative z-10"
+        {teams.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {teams.map((team, index) => {
+              const colors = colorSets[index % colorSets.length];
+              return (
+                <div
+                  key={team.id}
+                  className={`rounded-lg p-6 shadow-lg transform transition-all hover:shadow-2xl transition-shadow duration-300 relative overflow-hidden ${colors.bg} ${colors.border}`}
                 >
-                  View Team
-                </button>
-                <div className="flex justify-center space-x-4 relative z-10">
+                  <div className="absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-20"></div>
+                  <div className="flex justify-center mb-4 relative z-10">
+                    <Users className={`w-8 h-8 ${colors.icon}`} />
+                  </div>
+                  <h2 className="text-lg font-medium mb-2 text-gray-800 relative z-10">
+                    Team: {team.teamName}
+                  </h2>
+                  <p className="text-sm mb-4 relative z-10 text-gray-600">
+                    Created by: {team.createdBy}
+                  </p>
+                  <p className="text-sm mb-4 relative z-10 text-gray-800">
+                    {team.members ? Object.keys(team.members).length : 0} members
+                  </p>
                   <button
-                    onClick={() =>
-                      handleEdit(team.id, team.teamName, team.timestamp)
-                    }
-                    className="text-xs bg-gray-300 hover:bg-gray-500 text-black font-bold py-1 px-3 rounded-full transition duration-300"
+                    onClick={() => navigate(`/teams/${team.id}`)}
+                    className="text-sm border-1 border-gray-400 hover:text-gray-600 text-black font-bold py-1.5 px-3 rounded-full mb-4 transition duration-300 relative z-10"
                   >
-                    <UserPen className="w-4 h-4" />
+                    View Team
                   </button>
-                  <button
-                    onClick={() => handleDelete(team.id)}
-                    className="text-xs bg-red-300 hover:bg-red-500 text-white font-bold py-1 px-3 rounded-full transition duration-300"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
+                  <div className="flex justify-center space-x-4 relative z-10">
+                    <button
+                      onClick={() =>
+                        handleEdit(team.id, team.teamName, team.timestamp)
+                      }
+                      className="text-xs bg-gray-300 hover:bg-gray-500 text-black font-bold py-1 px-3 rounded-full transition duration-300"
+                    >
+                      <UserPen className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => handleDelete(team.id)}
+                      className="text-xs bg-red-300 hover:bg-red-500 text-white font-bold py-1 px-3 rounded-full transition duration-300"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        ) : (
+          <p className="text-center text-gray-500 mt-4">No teams available.</p>
+        )}
 
         {showModal && (
           <div className="fixed inset-0 bg-white flex justify-center items-center">
@@ -276,4 +285,5 @@ function TeamsPage() {
     </div>
   );
 }
+
 export default TeamsPage;

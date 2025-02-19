@@ -5,7 +5,6 @@ import MembersPage from "./pages/MembersPage";
 import Profile from "./pages/ProfileDetailPage";
 import ErrorPage from "./pages/ErrorPage";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import CreateProfilePage from "./pages/CreateProfilePage";
 import About from "./pages/AboutPage";
 import EditDetailsPage from "./pages/EditDetailsPage";

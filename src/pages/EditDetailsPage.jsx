@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { API_URL } from "../config/api";
+import BackButton from "../components/backButton";
+import Loader from "../components/Loader";
 
 function EditProfilePage() {
   const { teamId, profileId } = useParams();
@@ -12,12 +14,10 @@ function EditProfilePage() {
     place: "",
     age: "",
     hobbies: "",
+    linkedIn: "",
     question1: "",
     question2: "",
-    question3: "",
-    question4: "",
-    question5: "",
-    question6: "",
+    customQuestions: "",
   });
 
   const [imageBase64, setImageBase64] = useState(null);
@@ -49,7 +49,8 @@ function EditProfilePage() {
   };
 
   const handleCancel = () => {
-    navigate(-1);
+    event.preventDefault();
+    navigate(`/teams/${teamId}/profile/${profileId}`);
   };
 
   const handleSubmit = async (event) => {
@@ -62,178 +63,172 @@ function EditProfilePage() {
         updatedProfile
       );
       console.log("Profile updated successfully");
-      navigate(-1);
+      navigate(`/teams/${teamId}/profile/${profileId}`);
     } catch (error) {
       console.error("Error updating profile", error);
     }
   };
 
+  if (!profile) {
+    return <Loader />;
+  }
+
   return (
-    <div className="p-10">
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="new-profile-title">
-          <h2>
-            Welcome,
-            <br />
-            <span>Create your profile 😎</span>
-          </h2>
-        </div>
-        <div className="flex justify-evenly flex-wrap">
-          <div className="flex flex-col gap-7 w-2xs">
-            <div className="flex flex-col">
-              <label className="text-left">Name</label>
-              <input
-                className="input"
-                name="name"
-                type="text"
-                value={profile.name}
-                onChange={handleChange}
-              />
-            </div>
+    <div className="flex flex-col justify-center items-center text-center p-6">
+      {/* Back Button */}
+      <BackButton text="Back to Team" to={`/teams/${teamId}`} />
 
-            <div className="flex flex-col">
-              <label className="text-left">Where are you from</label>
-              <input
-                className="input"
-                name="place"
-                type="text"
-                value={profile.place}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="flex flex-col">
-              <label className="text-left">Age</label>
-              <input
-                className="input"
-                name="age"
-                type="number"
-                min="0"
-                value={profile.age}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="flex flex-col">
-              <label className="text-left">What are your Hobbies</label>
-              <input
-                className="input"
-                name="hobbies"
-                type="text"
-                value={profile.hobbies}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="flex flex-col">
-              <label className="text-left">
-                If this course had a mascot, what would it be?
-              </label>
-              <input
-                className="input"
-                name="question1"
-                type="text"
-                value={profile.question1}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="flex flex-col">
-              <label className="text-left">
-                You wake up in a video game world—what game is it, and what's
-                your first move?
-              </label>
-              <input
-                className="input"
-                name="question2"
-                type="text"
-                value={profile.question2}
-                onChange={handleChange}
-              />
-            </div>
+      <div>
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="new-profile-title">
+            <h2>
+              <span>Create your profile 😎</span>
+            </h2>
           </div>
-
-          {/* right side container */}
-          <div className="flex flex-col gap-7 w-2xs">
-            <div className="flex flex-col">
-              <label className="text-left">
-                If you had to survive a zombie apocalypse with only three items,
-                what would you choose?
-              </label>
-              <input
-                className="input"
-                name="question3"
-                type="text"
-                value={profile.question3}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="flex flex-col">
-              <label className="text-left">
-                If you could form a team with three fictional characters to save
-                the world, who would you choose?
-              </label>
-              <input
-                className="input"
-                name="question4"
-                type="text"
-                value={profile.question4}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="flex flex-col">
-              <label className="text-left">
-                If your life had a theme song that played whenever you entered a
-                room, what would it be?
-              </label>
-              <input
-                className="input"
-                name="question5"
-                type="text"
-                value={profile.question5}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="flex flex-col">
-              <label className="text-left">
-                If your pet could talk, what’s the first thing it would say to
-                you?
-              </label>
-              <input
-                className="input"
-                name="question6"
-                type="text"
-                value={profile.question6}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-left">Upload your picture</label>
-              <input type="file" accept="image/*" onChange={handleFileChange} />
-              {imageBase64 && (
-                <img
-                  src={imageBase64}
-                  alt="Profile Preview"
-                  className="mt-2 rounded w-24 h-24"
+          <div className="flex justify-evenly flex-wrap gap-35">
+            <div className="flex flex-col gap-15 w-2xs">
+              <div className="flex flex-col">
+                <label className="text-center">Hey, what’s your name?</label>
+                <input
+                  className="input"
+                  name="name"
+                  type="text"
+                  value={profile.name}
+                  onChange={handleChange}
+                  required
                 />
-              )}
-              <button className="button-confirm" type="submit">
-                Update Profile
-              </button>
-              <button
-                className="button-confirm"
-                type="submit"
-                onClick={handleCancel}
-              >
-                Cancel
-              </button>
+              </div>
+
+              <div className="flex flex-col">
+                <label className="text-center">Where are you based?</label>
+                <input
+                  className="input"
+                  name="place"
+                  type="text"
+                  value={profile.place}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label className="text-center">
+                  How many years young are you?
+                </label>
+                <input
+                  className="input"
+                  name="age"
+                  type="number"
+                  value={profile.age}
+                  min="0"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label className="text-center">Got any fun hobbies?</label>
+                <input
+                  className="input"
+                  name="hobbies"
+                  type="text"
+                  value={profile.hobbies}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label className="text-center">Got a LinkedIn?</label>
+                <input
+                  className="input"
+                  name="linkedIn"
+                  type="text"
+                  value={profile.linkedIn}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+
+            {/* right side container */}
+            <div className="flex flex-col gap-15 w-2xs">
+              <div className="flex flex-col">
+                <label className="text-center">
+                  If this course had a mascot, what would it be?
+                </label>
+                <input
+                  className="input"
+                  name="question1"
+                  type="text"
+                  value={profile.question1}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label className="text-center">
+                  If your life had a theme song, what would it be?
+                </label>
+                <input
+                  className="input"
+                  name="question2"
+                  type="text"
+                  value={profile.question2}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div>
+                {profile.customQuestions &&
+                  profile.customQuestions.map((question, index) => (
+                    <div key={index} className="flex flex-col">
+                      <label className="text-center">
+                        Custom Question #{index + 1}
+                      </label>
+                      <input
+                        className="input"
+                        name={`customQuestion-${index}`}
+                        type="text"
+                        value={question}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  ))}
+              </div>
+
+              <div className="flex flex-col">
+                <label className="text-center">Upload your picture</label>
+
+                <input
+                  className="input"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                />
+                {/* Image Preview */}
+                {imageBase64 && (
+                  <div className="flex justify-center mt-4">
+                    <img
+                      src={imageBase64}
+                      alt="Profile Preview"
+                      className="w-24 h-24 object-cover rounded-full border"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      </form>
+
+          <button className="button-confirm">Update</button>
+          <button
+            className="button-confirm"
+            type="submit"
+            onClick={handleCancel}
+          >
+            Cancel
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

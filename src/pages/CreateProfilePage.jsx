@@ -1,9 +1,9 @@
 import "../pages/CreateProfilePage.css";
 import axios from "axios";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../config/api";
 import { useState } from "react";
-import { ArrowBigLeft } from "lucide-react";
+import BackButton from "../components/backButton";
 
 function CreateProfilePage() {
   const { teamId } = useParams();
@@ -26,8 +26,16 @@ function CreateProfilePage() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const { name, place, age, hobbies, linkedIn, question1, question2 } =
-      event.target.elements;
+    const {
+      name,
+      place,
+      age,
+      hobbies,
+      linkedIn,
+      question1,
+      question2,
+      customQuestion,
+    } = event.target.elements;
 
     const newProfile = {
       name: name.value,
@@ -37,7 +45,7 @@ function CreateProfilePage() {
       linkedIn: linkedIn.value,
       question1: question1.value,
       question2: question2.value,
-
+      customQuestion: customQuestion.value,
       profileImage: imageBase64,
     };
 
@@ -61,15 +69,7 @@ function CreateProfilePage() {
   return (
     <div className="flex flex-col justify-center items-center text-center p-6">
       {/* Back Button */}
-      <div className="w-full max-w-2xl mr-25 mb-2">
-        <NavLink
-          to={`/teams/${teamId}`}
-          className="text-gray-600 hover:text-gray-900 flex items-center"
-        >
-          <ArrowBigLeft size={30} strokeWidth={1.5} className="mr-2" />
-          Back to Team
-        </NavLink>
-      </div>
+      <BackButton text="Back to Team" to={`/teams/${teamId}`} />
 
       <div>
         <form className="form" onSubmit={handleSubmit}>
@@ -128,6 +128,20 @@ function CreateProfilePage() {
                   If your life had a theme song, what would it be?
                 </label>
                 <input className="input" name="question2" type="text" />
+              </div>
+
+              {/* Custom Question Section */}
+              <div className="flex flex-col gap-15 w-2xs">
+                <div className="flex flex-col">
+                  <label className="text-center">
+                    Create Your Own Question:
+                    <input
+                      className="input"
+                      name="customQuestion"
+                      type="text"
+                    />
+                  </label>
+                </div>
               </div>
 
               <div className="flex flex-col">

@@ -8,10 +8,10 @@ import ReactionButtons from "../components/ReactionButtons";
 import dummyImage from "../assets/images/dummy-profile-image.png";
 import Loader from "../components/Loader";
 import "./ProfileDetailPage.css";
+import BackButton from "../components/backButton";
 import CustomAnswer from "../components/CustomAnswer";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utility/firebase";
-import BackButton from "../components/BackButton";
 
 function Profile() {
   const { profileId } = useParams();
@@ -60,16 +60,16 @@ function Profile() {
 
   return (
     <div className="profile-page p-4 md:p-8">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-4 mt-2">
         <BackButton text="Back to Profiles" to={`/teams/${teamId}`} />
-        <div className="flex space-x-2 hover:pointer">
+        <div className="flex gap-5 space-x-2 hover:pointer mb-1">
           <NavLink to={`/teams/${teamId}/members/${profileId}/edit`}>
             <button>
-              <UserPen />
+              <UserPen size={25} />
             </button>
           </NavLink>
           <button className="text-red-500" onClick={handleDelete}>
-            <Trash2 />
+            <Trash2 size={25} />
           </button>
         </div>
       </div>

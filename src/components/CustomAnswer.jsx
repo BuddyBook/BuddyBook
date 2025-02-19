@@ -35,18 +35,16 @@ function CustomAnswer({ teamId, profileId, user, onRefresh }) {
   };
 
   return (
-    <div className="flex">
+    <div className="relative w-full max-w-xs">
       <form onSubmit={handleSubmit}>
-        <div className="relative rounded-lg w-80 overflow-hidden  before:absolute before:w-12 before:h-12 before:content[''] before:right-0 before:rounded-full before:blur-lg  after:absolute after:-z-10 after:w-20 after:h-20 after:content['']  after:bg-rose-300 after:right-12 after:top-3 after:rounded-full after:blur-lg">
-          <input
-            name="answer"
-            value={answer}
-            onChange={handleChange}
-            placeholder="Type and hit enter.."
-            className="relative bg-transparent ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-violet-300 text-sm rounded-lg focus:ring-violet-500 placeholder-opacity-60 focus:border-black-500 block w-full p-3 checked:bg-emerald-500"
-            type="text"
-          />
-        </div>
+        <input
+          className="w-full h-10 px-4 text-sm text-black placeholder-gray-400 bg-gray-50 border border-purple-50 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#a9a9b3] transition-all duration-200 ease-in-out"
+          name="answer"
+          type="text"
+          value={answer}
+          placeholder="Type and hit enter..."
+          onChange={handleChange}
+        />
       </form>
     </div>
   );

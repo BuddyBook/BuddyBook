@@ -91,8 +91,10 @@ function CreateProfilePage() {
   return (
     <div className="flex flex-col justify-center items-center text-center p-6">
       {/* Back Button */}
-      <BackButton text="Back to Team" to={`/teams/${teamId}`} />
 
+      <div className="mr-auto">
+        <BackButton text="Back to Team" to={`/teams/${teamId}`} />
+      </div>
       <div>
         <form className="form" onSubmit={handleSubmit}>
           <div className="new-profile-title">

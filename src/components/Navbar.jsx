@@ -26,7 +26,9 @@ function Navbar() {
   return (
     <div className="navbar-container flex justify-between items-center bg-white shadow-md px-6 py-3 top-0 w-full z-50">
       {/* Logo */}
-      <img src={logo} alt="Logo" className="h-10 w-auto -rotate-10" />
+      <NavLink to="/">
+        <img src={logo} alt="Logo" className="h-10 w-auto -rotate-10" />
+      </NavLink>
 
       {/* Navigation Links */}
       <div className="flex items-center gap-6">

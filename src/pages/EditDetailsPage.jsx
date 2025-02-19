@@ -93,10 +93,12 @@ function EditProfilePage() {
   return (
     <div className="flex flex-col justify-center items-center text-center p-6">
       {/* Back Button */}
-      <BackButton
-        text="Back to Team"
-        to={`/teams/${teamId}/profile/${profileId}`}
-      />
+      <div className="flex mr-auto">
+        <BackButton
+          text="Back to Team"
+          to={`/teams/${teamId}/profile/${profileId}`}
+        />
+      </div>
 
       <div>
         <form className="form" onSubmit={handleSubmit}>

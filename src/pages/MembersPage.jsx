@@ -121,16 +121,14 @@ function MembersPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between w-full px-10 mb-8">
-        <div className="max-w-2xl">
+      <div className="flex flex-col md:flex-row flex-wrap items-center gap-2  justify-center w-full px-10 mb-8 mt-8  ">
+        <div className="max-w-2xl ">
           <BackButton text="Back to Teams" to="/teams" />
         </div>
 
-        <div className="text-center flex-1 mr-18 ">
-          <h2 className="text-2xl font-bold mt-8 ">
-            Team Name: {team.teamName}
-          </h2>
-          <h1 className="text-xs">Created by {team.createdBy}</h1>
+        <div className="text-center flex-1">
+          <h2 className="text-2xl font-bold">Team Name: {team.teamName}</h2>
+          <h1 className="text-xs !mb-0">Created by {team.createdBy}</h1>
         </div>
 
         <div className="pb-3">

@@ -9,7 +9,7 @@ function BackButton({ text, to }) {
   };
 
   return (
-    <div className="w-full max-w-2xl mr-25 mb-2">
+    <div className="w-full max-w-2xl mb-2">
       <button
         onClick={handleClick}
         className="text-gray-600 text-sm hover:text-gray-900 flex items-center"

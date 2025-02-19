@@ -1,0 +1,21 @@
+.navbar-container {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 5px 5px rgba(178, 176, 176, 0.5) ;
+    height: 50px;
+    transition: box-shadow 0.3s ease-in-out;
+    margin-bottom: 30px; 
+}
+
+.navbar-container:hover {
+    box-shadow: 0 4px 10px  rgba(249, 25, 152, 0.3); 
+}
+
+.button-container{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 10px;
+    padding-top: 15px;
+    gap: 25px;
+    margin-right: 20px;
+}

@@ -1,6 +1,9 @@
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import { auth } from "../utility/firebase";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { House } from "lucide-react";
+
+import "../components/Navbar.css";
 
 function Navbar() {
   const [signOut, loading, error] = useSignOut(auth);
@@ -10,19 +13,31 @@ function Navbar() {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <h2>Buddy Book</h2>
-
-      {user && (
-        <button
-          onClick={() => {
-            signOut(auth);
-            navigate("/");
-          }}
+    <div className="navbar-container">
+      <div className="button-container">
+        <NavLink
+          to="/"
+          className="flex items-center gap-1 text-[rgb(0,0,0.3)] transition-colors duration-300 hover:text-[rgb(249,25,152)] group"
         >
-          Logout
-        </button>
-      )}
+          <House
+            className="transition-colors duration-200 group-hover:text-[rgb(249,25,152)]"
+            color="currentColor"
+            size={20}
+          />
+          Home
+        </NavLink>
+
+        {user && (
+          <button
+            onClick={() => {
+              signOut(auth);
+              navigate("/");
+            }}
+          >
+            Logout
+          </button>
+        )}
+      </div>
     </div>
   );
 }

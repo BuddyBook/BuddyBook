@@ -76,13 +76,16 @@ function EditProfilePage() {
   return (
     <div className="flex flex-col justify-center items-center text-center p-6">
       {/* Back Button */}
-      <BackButton text="Back to Team" to={`/teams/${teamId}`} />
+      <BackButton
+        text="Back to Team"
+        to={`/teams/${teamId}/profile/${profileId}`}
+      />
 
       <div>
         <form className="form" onSubmit={handleSubmit}>
           <div className="new-profile-title">
             <h2>
-              <span>Create your profile 😎</span>
+              <span>Edit your profile 😎</span>
             </h2>
           </div>
           <div className="flex justify-evenly flex-wrap gap-35">

@@ -8,7 +8,7 @@ import ReactionButtons from "../components/ReactionButtons";
 import dummyImage from "../assets/images/dummy-profile-image.png";
 import Loader from "../components/Loader";
 import "./ProfileDetailPage.css";
-import BackButton from "../components/backButton";
+import BackButton from "../components/BackButton";
 import CustomAnswer from "../components/CustomAnswer";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utility/firebase";
@@ -65,7 +65,7 @@ function Profile() {
         <div className="flex gap-5 space-x-2 hover:pointer mb-1">
           <NavLink to={`/teams/${teamId}/members/${profileId}/edit`}>
             <button>
-              <UserPen size={25} />
+              <UserPen size={25} className="mt-2" />
             </button>
           </NavLink>
           <button className="text-red-500" onClick={handleDelete}>

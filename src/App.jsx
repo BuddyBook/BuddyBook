@@ -24,7 +24,6 @@ function App() {
             <>
               <PrivateRoute>
                 <TeamsPage />
-                <Footer />
               </PrivateRoute>
             </>
           }

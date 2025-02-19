@@ -3,6 +3,8 @@ import { auth } from "../utility/firebase";
 import { NavLink, useNavigate } from "react-router-dom";
 import { House, LogOut } from "lucide-react";
 
+import logo from "../assets/images/logo/BuddyBook-pink-logo.png";
+
 import "../components/Navbar.css";
 
 function Navbar() {
@@ -22,31 +24,36 @@ function Navbar() {
   };
 
   return (
-    <div className="navbar-container">
-      <div className="button-container">
+    <div className="navbar-container flex justify-between items-center bg-white shadow-md px-6 py-3 top-0 w-full z-50">
+      {/* Logo */}
+      <img src={logo} alt="Logo" className="h-10 w-auto -rotate-10" />
+
+      {/* Navigation Links */}
+      <div className="flex items-center gap-6">
         <NavLink
           to="/"
-          className="flex items-center gap-1 text-[rgb(0,0,0.3)] transition-colors duration-300 hover:text-[rgb(249,25,152)] group"
+          className="flex items-center gap-2 text-gray-700 transition-colors duration-300 hover:text-pink-500 group"
         >
           <House
-            className="transition-colors duration-200 group-hover:text-[rgb(249,25,152)]"
+            className="transition-colors duration-200 group-hover:text-pink-500"
             color="currentColor"
-            size={20}
+            size={22}
           />
-          Home
+          <span className="font-medium">Home</span>
         </NavLink>
 
+        {/* Logout Button (Only if user exists) */}
         {user && (
           <button
             onClick={handleSignOut}
-            className="flex items-center gap-1 text-[rgb(0,0,0.3)] transition-colors duration-300 hover:text-[rgb(249,25,152)] group"
+            className="flex items-center gap-2 text-gray-700 transition-colors duration-300 hover:text-pink-500 group"
           >
             <LogOut
-              className="transition-colors duration-200 group-hover:text-[rgb(249,25,152)]"
+              className="transition-colors duration-200 group-hover:text-pink-500"
               color="currentColor"
-              size={20}
+              size={22}
             />
-            Logout
+            <span className="font-medium">Logout</span>
           </button>
         )}
       </div>

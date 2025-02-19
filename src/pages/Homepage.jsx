@@ -26,7 +26,7 @@ function Homepage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br p-8 flex flex-col justify-center items-center text-center">
+    <div className="min-h-150 bg-gradient-to-br p-8 flex flex-col justify-center items-center text-center mt-1">
       <div className="bg-white bg-opacity-90 p-6 rounded-xl shadow-xl border-4 border-pastelYellow">
         <p className="font-handwriting text-sm mb-2 text-vibrantPurple">
           Created by Julia Solias & Uzma Shaik.

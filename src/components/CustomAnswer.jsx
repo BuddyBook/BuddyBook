@@ -3,6 +3,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { API_URL } from "../config/api";
+import { Send } from "lucide-react";
 
 function CustomAnswer({ teamId, profileId, user, onRefresh }) {
   const [answer, setAnswer] = useState("");
@@ -11,7 +12,7 @@ function CustomAnswer({ teamId, profileId, user, onRefresh }) {
     setAnswer(e.target.value);
   };
 
-  const handleOnClick = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(user);
 
@@ -36,29 +37,19 @@ function CustomAnswer({ teamId, profileId, user, onRefresh }) {
   };
 
   return (
-    <div className="relative mt-6">
-      <input
-        type="text"
-        value={answer}
-        onChange={handleChange}
-        className="block w-full rounded-2xl border border-neutral-300 bg-transparent py-4 pl-6 pr-20 text-base/6 text-neutral-950 ring-4 ring-transparent transition placeholder:text-neutral-500 focus:border-neutral-950 focus:outline-none focus:ring-neutral-950/5"
-      />
-      <div className="absolute inset-y-1 right-1 flex justify-end">
-        <button
-          type="submit"
-          onClick={handleOnClick}
-          className="flex aspect-square h-full items-center justify-center rounded-xl bg-neutral-950 text-white transition hover:bg-neutral-800"
-        >
-          <svg viewBox="0 0 16 6" aria-hidden="true" className="w-4">
-            <path
-              fill="currentColor"
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M16 3 10 .5v2H0v1h10v2L16 3Z"
-            ></path>
-          </svg>
-        </button>
-      </div>
+    <div className="flex">
+      <form onSubmit={handleSubmit}>
+        <div className="relative rounded-lg w-100 overflow-hidden  before:absolute before:w-12 before:h-12 before:content[''] before:right-0 before:bg-violet-500 before:rounded-full before:blur-lg  after:absolute after:-z-10 after:w-20 after:h-20 after:content['']  after:bg-rose-300 after:right-12 after:top-3 after:rounded-full after:blur-lg">
+          <input
+            name="answer"
+            value={answer}
+            onChange={handleChange}
+            placeholder="Type and hit enter.."
+            className="relative bg-transparent ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-violet-700 text-sm rounded-lg focus:ring-violet-500 placeholder-opacity-60 focus:border-black-500 block w-full p-2.5 checked:bg-emerald-500"
+            type="text"
+          />
+        </div>
+      </form>
     </div>
   );
 }

@@ -8,7 +8,7 @@ import ReactionButtons from "../components/ReactionButtons";
 import dummyImage from "../assets/images/dummy-profile-image.png";
 import Loader from "../components/Loader";
 import "./ProfileDetailPage.css";
-import BackButton from "../components/backButton";
+import BackButton from "../components/BackButton";
 import CustomAnswer from "../components/CustomAnswer";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utility/firebase";

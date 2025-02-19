@@ -6,7 +6,7 @@ import { API_URL } from "../config/api";
 import "../pages/MembersPage.css";
 import Loader from "../components/Loader";
 import { ArrowBigLeft, User } from "lucide-react";
-import BackButton from "../components/backButton";
+import BackButton from "../components/BackButton";
 
 function MembersPage() {
   const { id } = useParams();

@@ -77,7 +77,7 @@ function Profile() {
         <img
           src={profile.profileImage || dummyImage}
           alt="Profile"
-          className="profile-image mb-4 md:mb-0 md:mr-4"
+          className="profile-image mb-4 md:mb-0 md:mr-4 ml-50"
         />
 
         <div className="flex-1">
@@ -130,7 +130,7 @@ function Profile() {
 
       <ReactionButtons className="reaction-buttons" teamId={teamId} profileId={profileId} />
 
-      <div className="flex-1 bg-gray-100 p-4 rounded-lg shadow-lg mt-4">
+      <div className="flex-1 bg-blue-100 p-4 rounded-lg shadow-lg mt-4">
         <h2 className="text-xl font-semibold mb-2">Messages from Colleagues</h2>
         <div className="message-box">{/* Messages to be displayed */}</div>
       </div>

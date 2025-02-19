@@ -126,7 +126,7 @@ function MembersPage() {
           <BackButton text="Back to Teams" to="/teams" />
         </div>
 
-        <div className="text-center flex-1 mr-25 ">
+        <div className="text-center flex-1 mr-18 ">
           <h2 className="text-2xl font-bold mt-8 ">
             Team Name: {team.teamName}
           </h2>

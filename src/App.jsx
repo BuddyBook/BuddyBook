@@ -3,7 +3,7 @@ import Homepage from "./pages/Homepage";
 import TeamsPage from "./pages/TeamsPage";
 import MembersPage from "./pages/MembersPage";
 import Profile from "./pages/ProfileDetailPage";
-import ErrorPage from "./pages/ErrorPAge";
+import ErrorPage from "./pages/ErrorPage";
 import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
 import CreateProfilePage from "./pages/CreateProfilePage";

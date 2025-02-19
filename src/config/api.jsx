@@ -1,2 +1,2 @@
 export const API_URL =
-  "https://buddybook-e6cd7-default-rtdb.europe-west1.firebasedatabase.app";
+  "https://buddy-book-53b6b-default-rtdb.europe-west1.firebasedatabase.app/";

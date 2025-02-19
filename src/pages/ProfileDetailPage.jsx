@@ -121,6 +121,7 @@ function Profile() {
                     return (
                       <div key={key}>
                         <p>{profile.customAnswers[key].answer}</p>
+                        <p>{profile.customAnswers[key].name}</p>
                       </div>
                     );
                   })}

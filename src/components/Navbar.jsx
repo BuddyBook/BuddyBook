@@ -1,7 +1,7 @@
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import { auth } from "../utility/firebase";
 import { NavLink, useNavigate } from "react-router-dom";
-import { House } from "lucide-react";
+import { House, LogOut } from "lucide-react";
 
 import "../components/Navbar.css";
 
@@ -28,14 +28,17 @@ function Navbar() {
         </NavLink>
 
         {user && (
-          <button
-            onClick={() => {
-              signOut(auth);
-              navigate("/");
-            }}
+          <NavLink
+            to="/"
+            className="flex items-center gap-1 text-[rgb(0,0,0.3)] transition-colors duration-300 hover:text-[rgb(249,25,152)] group"
           >
+            <LogOut
+              className="transition-colors duration-200 group-hover:text-[rgb(249,25,152)]"
+              color="currentColor"
+              size={20}
+            />
             Logout
-          </button>
+          </NavLink>
         )}
       </div>
     </div>

@@ -21,9 +21,12 @@ function App() {
         <Route
           path="/teams"
           element={
-            <PrivateRoute>
-              <TeamsPage />
-            </PrivateRoute>
+            <>
+              <PrivateRoute>
+                <TeamsPage />
+                <Footer />
+              </PrivateRoute>
+            </>
           }
         />
         <Route path="/teams/:id" element={<MembersPage />} />
@@ -33,11 +36,17 @@ function App() {
           path="/teams/:teamId/members/:profileId/edit"
           element={<EditDetailsPage />}
         />
-        <Route path="/about" element={<About />} />
+        <Route
+          path="/about"
+          element={
+            <>
+              <About />
+              <Footer />
+            </>
+          }
+        />
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
-
-      <Footer />
     </div>
   );
 }

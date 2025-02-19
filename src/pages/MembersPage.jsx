@@ -5,7 +5,7 @@ import { API_URL } from "../config/api";
 
 import "../pages/MembersPage.css";
 import Loader from "../components/Loader";
-import { ArrowBigLeft, User } from "lucide-react";
+import { ArrowBigLeft, Plus, User } from "lucide-react";
 import BackButton from "../components/backButton";
 
 function MembersPage() {
@@ -120,17 +120,26 @@ function MembersPage() {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold">Team Name: {team.teamName}</h2>
-      <h1 className="text-xs">Created by {team.createdBy} </h1>
+      <div className="flex items-center justify-between w-full px-10 mb-8">
+        <div className="max-w-2xl">
+          <BackButton text="Back to Teams" to="/teams" />
+        </div>
 
-      <NavLink to={`/profile/create/${id}`}>
-        <button className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-full mb-8 transition duration-300 shadow-md">
-          Add Your Profile
-        </button>
-      </NavLink>
+        <div className="text-center flex-1 mr-25 ">
+          <h2 className="text-2xl font-bold mt-8 ">
+            Team Name: {team.teamName}
+          </h2>
+          <h1 className="text-xs">Created by {team.createdBy}</h1>
+        </div>
 
-      <div className="w-full max-w-2xl ml-30 mb-30">
-        <BackButton text="Back to Teams" to="/teams" />
+        <div className="pb-3">
+          <NavLink to={`/profile/create/${id}`}>
+            <button className="flex justify-around align-middle gap-0.5 bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 shadow-md">
+              <Plus strokeWidth={4} size={25} />
+              Add Your Profile
+            </button>
+          </NavLink>
+        </div>
       </div>
 
       <div className="flex justify-evenly flex-wrap gap-6">

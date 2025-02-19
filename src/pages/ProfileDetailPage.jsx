@@ -14,8 +14,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utility/firebase";
 
 function Profile() {
-  const { profileId } = useParams();
-  const { teamId } = useParams();
+  const { profileId, teamId } = useParams();
   const [profile, setProfile] = useState(null);
 
   const [user] = useAuthState(auth);
@@ -129,7 +128,7 @@ function Profile() {
         </div>
       </div>
 
-      <ReactionButtons className="reaction-buttons" />
+      <ReactionButtons className="reaction-buttons" teamId={teamId} profileId={profileId} />
 
       <div className="flex-1 bg-gray-100 p-4 rounded-lg shadow-lg mt-4">
         <h2 className="text-xl font-semibold mb-2">Messages from Colleagues</h2>

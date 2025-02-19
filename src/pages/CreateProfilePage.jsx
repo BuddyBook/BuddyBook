@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../config/api";
 import { useState } from "react";
-import BackButton from "../components/backButton";
+import BackButton from "../components/BackButton";
 
 function CreateProfilePage() {
   const { teamId } = useParams();

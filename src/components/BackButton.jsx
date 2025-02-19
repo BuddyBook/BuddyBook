@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { ArrowBigLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 

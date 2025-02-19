@@ -5,8 +5,13 @@ import { API_URL } from "../config/api";
 
 import "../pages/MembersPage.css";
 import Loader from "../components/Loader";
+<<<<<<< HEAD
 import { ArrowBigLeft, Plus, User } from "lucide-react";
 import BackButton from "../components/backButton";
+=======
+import { ArrowBigLeft, User } from "lucide-react";
+import BackButton from "../components/BackButton";
+>>>>>>> refs/remotes/origin/main
 
 function MembersPage() {
   const { id } = useParams();

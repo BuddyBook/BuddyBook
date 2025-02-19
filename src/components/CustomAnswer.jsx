@@ -3,7 +3,6 @@
 import axios from "axios";
 import { useState } from "react";
 import { API_URL } from "../config/api";
-import { Send } from "lucide-react";
 
 function CustomAnswer({ teamId, profileId, user, onRefresh }) {
   const [answer, setAnswer] = useState("");
@@ -27,7 +26,6 @@ function CustomAnswer({ teamId, profileId, user, onRefresh }) {
         }
       )
       .then((response) => {
-        console.log(response.data);
         setAnswer("");
         onRefresh();
       })

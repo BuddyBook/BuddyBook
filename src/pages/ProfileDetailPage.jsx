@@ -12,6 +12,7 @@ import BackButton from "../components/BackButton";
 import CustomAnswer from "../components/CustomAnswer";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utility/firebase";
+import Comments from "../components/Comments";
 
 function Profile() {
   const { profileId, teamId } = useParams();
@@ -128,11 +129,34 @@ function Profile() {
         </div>
       </div>
 
-      <ReactionButtons className="reaction-buttons" teamId={teamId} profileId={profileId} />
+      <ReactionButtons
+        className="reaction-buttons"
+        teamId={teamId}
+        profileId={profileId}
+      />
 
       <div className="flex-1 bg-gray-100 p-4 rounded-lg shadow-lg mt-4">
         <h2 className="text-xl font-semibold mb-2">Messages from Colleagues</h2>
-        <div className="message-box">{/* Messages to be displayed */}</div>
+        <Comments
+          teamId={teamId}
+          profileId={profileId}
+          user={user}
+          onRefresh={() => getProfile()}
+        />
+
+        <div className="message-box">
+          <div>
+            {profile.comments &&
+              Object.keys(profile.comments).map((key) => {
+                return (
+                  <div key={key}>
+                    <p>{profile.comments[key].comment}</p>
+                    <p>{profile.comments[key].name}</p>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -10,17 +10,39 @@ function CreateProfilePage() {
 
   const navigate = useNavigate();
 
-  const [imageBase64, setImageBase64] = useState(null);
+  const [image, setImage] = useState(null);
+  const [waitingForImageUrl, setWaitingForImageUrl] = useState(false);
+  console.log("Cloud Name:", import.meta.env.VITE_CLOUD_NAME);
+  console.log("Upload Preset:", import.meta.env.VITE_UNSIGNED_UPLOAD_PRESET);
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        setImageBase64(reader.result); // Store Base64 string
-      };
-    }
+  const handleImage = (event) => {
+    setWaitingForImageUrl(true);
+
+    console.log("The file to be uploaded is: ", event.target.files[0]);
+
+    const url = `https://api.cloudinary.com/v1_1/${
+      import.meta.env.VITE_CLOUD_NAME
+    }/upload`;
+    const dataToUpload = new FormData();
+    dataToUpload.append("file", event.target.files[0]);
+    // VITE_UNSIGNED_UPLOAD_PRESET => name of the unsigned upload preset created in your Cloudinary account
+    dataToUpload.append(
+      "upload_preset",
+      import.meta.env.VITE_UNSIGNED_UPLOAD_PRESET
+    );
+    axios
+      .post(url, dataToUpload)
+      .then((response) => {
+        // to see the structure of the response
+        console.log("RESPONSE ", response.data);
+        // the image url is stored in the property secure_url
+        setImage(response.data.secure_url);
+        setWaitingForImageUrl(false);
+      })
+      .catch((error) => {
+        console.error("Error uploading the file:", error);
+        setWaitingForImageUrl(false);
+      });
   };
 
   const handleSubmit = (event) => {
@@ -46,7 +68,7 @@ function CreateProfilePage() {
       question1: question1.value,
       question2: question2.value,
       customQuestion: customQuestion.value,
-      profileImage: imageBase64,
+      profileImage: image,
     };
 
     axios
@@ -147,18 +169,13 @@ function CreateProfilePage() {
               <div className="flex flex-col">
                 <label className="text-center">Upload your picture</label>
 
-                <input
-                  className="input"
-                  type="file"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                />
+                <input className="input" type="file" onChange={handleImage} />
                 {/* Image Preview */}
-                {imageBase64 && (
+                {image && (
                   <div className="flex justify-center mt-4">
                     <img
-                      src={imageBase64}
-                      alt="Profile Preview"
+                      src={image}
+                      alt="my cloudinary image"
                       className="w-24 h-24 object-cover rounded-full border"
                     />
                   </div>
@@ -167,7 +184,9 @@ function CreateProfilePage() {
             </div>
           </div>
 
-          <button className="button-confirm">Let's go</button>
+          <button className="button-confirm" disabled={waitingForImageUrl}>
+            Let's go
+          </button>
         </form>
       </div>
     </div>

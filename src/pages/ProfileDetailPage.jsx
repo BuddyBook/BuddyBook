@@ -56,8 +56,6 @@ function Profile() {
     );
   }
 
-  console.log(profile);
-
   return (
     <div className="profile-page p-4 md:p-8">
       <div className="flex justify-between items-center mb-4 mt-2">

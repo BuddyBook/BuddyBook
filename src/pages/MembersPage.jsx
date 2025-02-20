@@ -144,47 +144,53 @@ function MembersPage() {
       </NavLink>
 
       <div className="flex justify-evenly flex-wrap gap-6 ml-10 mr-10 mb-10">
-        {members.map((profileObj) => {
-          // Assign a unique random color set to each card
-          const colors = getRandomColorSet();
+        {!members.length ? (
+          <div className="flex items-center justify-center text-gray-300 mt-30">
+            No Profiles Created!
+          </div>
+        ) : (
+          members.map((profileObj) => {
+            // Assign a unique random color set to each card
+            const colors = getRandomColorSet();
 
-          return (
-            <div
-              key={profileObj.id}
-              className={`${colors.bg} ${colors.border} border-2 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden h-55 w-56 flex flex-col items-center p-4`} // Smaller card size
-            >
-              {/* Image Container */}
-              <div className="w-20 h-20 overflow-hidden rounded-full flex items-center justify-center">
-                {profileObj.profileImage ? (
-                  <img
-                    className="w-full h-full object-cover"
-                    src={profileObj.profileImage}
-                    alt="Profile"
-                  />
-                ) : (
-                  <User className="user-icon" />
-                )}
-              </div>
+            return (
+              <div
+                key={profileObj.id}
+                className={`${colors.bg} ${colors.border} border-2 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden h-55 w-56 flex flex-col items-center p-4`} // Smaller card size
+              >
+                {/* Image Container */}
+                <div className="w-20 h-20 overflow-hidden rounded-full flex items-center justify-center">
+                  {profileObj.profileImage ? (
+                    <img
+                      className="w-full h-full object-cover"
+                      src={profileObj.profileImage}
+                      alt="Profile"
+                    />
+                  ) : (
+                    <User className="user-icon" />
+                  )}
+                </div>
 
-              {/* Text Content */}
-              <div className="text-center mt-4">
-                <h3 className="text-l font-semibold text-gray-800">
-                  {profileObj.name}
-                </h3>
-                <p className="text-sm text-gray-600">{profileObj.place}</p>
-              </div>
+                {/* Text Content */}
+                <div className="text-center mt-4">
+                  <h3 className="text-l font-semibold text-gray-800">
+                    {profileObj.name}
+                  </h3>
+                  <p className="text-sm text-gray-600">{profileObj.place}</p>
+                </div>
 
-              {/* Button */}
-              <div className="mt-4">
-                <NavLink to={`/teams/${id}/profile/${profileObj.id}`}>
-                  <button className="px-4 py-2 bg-transparent border border-gray-400 rounded-full text-xs font-bold text-gray-700 hover:bg-gray-100 transition-colors duration-300 shadow-sm">
-                    View Profile
-                  </button>
-                </NavLink>
+                {/* Button */}
+                <div className="mt-4">
+                  <NavLink to={`/teams/${id}/profile/${profileObj.id}`}>
+                    <button className="px-4 py-2 bg-transparent border border-gray-400 rounded-full text-xs font-bold text-gray-700 hover:bg-gray-100 transition-colors duration-300 shadow-sm">
+                      View Profile
+                    </button>
+                  </NavLink>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })
+        )}
       </div>
     </div>
   );

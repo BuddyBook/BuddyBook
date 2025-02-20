@@ -42,7 +42,7 @@ function CustomAnswer({ teamId, profileId, user, onRefresh }) {
           name="answer"
           type="text"
           value={answer}
-          placeholder="Type and hit enter..."
+          placeholder="Type your answer and hit enter..."
           onChange={handleChange}
         />
       </form>

@@ -147,7 +147,7 @@ function TeamsPage() {
 
   return (
     <div>
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto px-4 pb-6 sm:px-6 sm:pb-8">
         <h1 className="text-4xl font-bold text-blue-600 mb-4 mt-4">
           Teams Page
         </h1>
@@ -173,7 +173,7 @@ function TeamsPage() {
               return (
                 <div
                   key={team.id}
-                  className={`rounded-lg p-6 shadow-lg transform transition-all hover:shadow-2xl transition-shadow duration-300 relative overflow-hidden ${colors.bg} ${colors.border}`}
+                  className={`rounded-lg p-6 border-2 shadow-lg transform transition-all hover:shadow-2xl transition-shadow duration-300 relative overflow-hidden ${colors.bg} ${colors.border}`}
                 >
                   <div className="absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-20"></div>
                   <div className="flex justify-center mb-4 relative z-10">
@@ -186,7 +186,8 @@ function TeamsPage() {
                     Created by: {team.createdBy}
                   </p>
                   <p className="text-sm mb-4 relative z-10 text-gray-800">
-                    {team.members ? Object.keys(team.members).length : 0} members
+                    {team.members ? Object.keys(team.members).length : 0}{" "}
+                    members
                   </p>
                   <button
                     onClick={() => navigate(`/teams/${team.id}`)}

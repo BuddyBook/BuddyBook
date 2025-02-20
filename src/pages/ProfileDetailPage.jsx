@@ -81,9 +81,9 @@ function Profile() {
       <div className="bg-white shadow-lg rounded-lg p-6 w-full md:w-4/5 mx-auto mb-5">
         <h1 className="text-3xl font-bold mb-4">{profile.name}'s Profile</h1>
 
-        <div className="flex flex-col md:flex-row justify-between mb-4">
+        <div className="flex flex-col md:flex-row justify-between mb-3">
           {/* Left Block */}
-          <div className="flex flex-col items-center md:w-1/2 mb-4 relative group">
+          <div className="flex flex-col items-center md:w-1/2 mb-4 relative group mr-8">
             <div className="bg-white p-4 shadow-md rounded-md mb-4 relative group-hover:shadow-[0_0_10px_rgb(255,165,0)] transition duration-300">
               <Paperclip
                 className="text-gray-700 absolute top-0 left-0 -m-4"
@@ -101,39 +101,58 @@ function Profile() {
             </div>
 
             <div className="text-center">
-              <h1 className="text-xl font-semibold">Name: {profile.name}</h1>
-              <h2 className="text-lg">Country: {profile.place}</h2>
-              <h2 className="text-lg">Hobbies: {profile.hobbies}</h2>
+              <h1 className="text-xl font-semibold mt-3">
+                My name is {profile.name}
+              </h1>
             </div>
+
+            <ReactionButtons
+              className="reaction-buttons"
+              teamId={teamId}
+              profileId={profileId}
+            />
           </div>
 
           {/* Right Block */}
           <div className="md:w-1/2 relative">
             <div className="mb-4">
-              <h1 className="text-xl font-semibold">My answers</h1>
-              <h2 className="font-semibold">
-                If this course had a mascot, what would it be?
-              </h2>
-              <div className="bg-gray-100 p-3 rounded-lg shadow-inner">
-                <p>{profile.question1}</p>
+              <h1 className="text-xl font-semibold">More about me 😊</h1>
+              <div className="mb-10">
+                <h2 className="text-lg mb-5">I am from {profile.place}</h2>
+                <h2 className="text-lg">My hobbies are {profile.hobbies}</h2>
+              </div>
+
+              <div className="mb-4">
+                <h1 className="text-xl font-semibold">My answers</h1>
+                <h2 className="font-semibold mb-3">
+                  If this course had a mascot, what would it be?
+                </h2>
+                <div className="bg-gray-100 p-3 rounded-lg shadow-inner mb-10">
+                  <p>{profile.question1}</p>
+                </div>
               </div>
             </div>
 
             <div className="mb-4">
-              <h2 className="font-semibold">
+              <h2 className="font-semibold mb-3">
                 If your life had a theme song, what would it be?
               </h2>
-              <div className="bg-gray-100 p-3 rounded-lg shadow-inner">
+              <div className="bg-gray-100 p-3 rounded-lg shadow-inner mb-10">
                 <p>{profile.question2}</p>
               </div>
             </div>
 
-            {/* Custom Question Section */}
-            <div className="mb-6">
-              <h1 className="text-lm font-semibold">
-                Add your own answer below 😇
-              </h1>
+            <div className="relative flex justify-end gap-5 p-2">
+              <NavLink to={`/teams/${teamId}/members/${profileId}/edit`}>
+                <button>
+                  <UserPen size={29} className="mt-2" />
+                </button>
+              </NavLink>
+              <button className="text-red-500" onClick={handleDelete}>
+                <Trash2 size={29} />
+              </button>
             </div>
+<<<<<<< HEAD
 
             <div className="absolute bottom-0 right-1 flex gap-5 space-x-2 hover:pointer mb-1">
               <NavLink to={`/teams/${teamId}/members/${profileId}/edit`}>
@@ -145,17 +164,13 @@ function Profile() {
                 <Trash2 size={28} />
               </button>
             </div>
+=======
+>>>>>>> refs/remotes/origin/main
           </div>
         </div>
       </div>
 
-      <ReactionButtons
-        className="reaction-buttons"
-        teamId={teamId}
-        profileId={profileId}
-      />
-
-      <div className="flex-1 bg-gray-100 p-4 sm:p-6 rounded-lg shadow-lg mt-4">
+      <div className="flex-1 bg-gradient-to-br from-white to-gray-100 p-4 sm:p-6 rounded-lg shadow-lg mt-4">
         <h2 className="text-xl font-semibold mb-4 sm:mb-6">
           Messages from Colleagues
         </h2>
@@ -164,10 +179,16 @@ function Profile() {
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Left half */}
           <div className="flex flex-col w-full lg:w-1/2 items-start">
-            <h2 className="font-semibold text-left ml-5 flex">
+            <h2 className="font-semibold text-left ml-5 flex ">
               {profile.customQuestion}
             </h2>
-            <div className="mt-4 flex justify-start w-full ml-5">
+            {/* Custom Question Section */}
+            <div className="ml-3">
+              <h1 className="text-xs !text-gray-400">
+                Add your own answer below 😇
+              </h1>
+            </div>
+            <div className="flex justify-start w-full ml-3">
               <CustomAnswer
                 teamId={teamId}
                 profileId={profileId}
@@ -185,6 +206,12 @@ function Profile() {
 
           {/* Right half */}
           <div className="w-full lg:w-1/2">
+            {/* Custom Question Section */}
+            <div className="mb-6">
+              <h1 className="text-lm font-semibold">
+                Add your own answer below 😇
+              </h1>
+            </div>
             <Comments
               teamId={teamId}
               profileId={profileId}

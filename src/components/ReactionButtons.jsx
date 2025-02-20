@@ -8,7 +8,7 @@ function ReactionButtons() {
 
   const reactions = [
     { emoji: "👏🏻", label: "Cheer", type: "cheer" },
-    { emoji: "🩷", label: "Heart", type: "heart" },
+    { emoji: "❤️", label: "Heart", type: "heart" },
     { emoji: "🎉", label: "Celebrate", type: "celebrate" },
     { emoji: "😊", label: "Smile", type: "smile" },
     { emoji: "✨", label: "Appreciate", type: "appreciate" },

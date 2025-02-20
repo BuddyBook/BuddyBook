@@ -1,6 +1,7 @@
 import { useAuthState, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { NavLink, useNavigate } from "react-router-dom";
 import { auth } from "../utility/firebase";
+import logo from "../assets/images/logo/BuddyBook-final.png"
 
 function Homepage() {
   const [signInWithGoogle, credentials, signInLoading, signInError] =
@@ -31,7 +32,7 @@ function Homepage() {
           Welcome to BuddyBook
         </h1>
         <img
-          src="src/assets/images/logo/BuddyBook-pink-logo.png"
+          src={logo}
           className="mx-auto mb-4 w-32"
         />
 
@@ -43,9 +44,9 @@ function Homepage() {
         <div className="flex justify-center mb-4">
           <button
             onClick={handleLogin}
-            className="bg-black text-violet-400 border border-violet-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
+            className="text-violet-500 border border-violet-500 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
           >
-            <span className="bg-violet-400 shadow-violet-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
+            <span className="bg-violet-500 shadow-violet-500 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
             Get Started
           </button>
         </div>

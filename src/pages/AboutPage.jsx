@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import logo from "../assets/images/logo/BuddyBook-final.png"
 
 const teamMembers = [
   {
@@ -29,7 +30,7 @@ function AboutPage() {
             </p>
 
             <img
-              src="src/assets/images/logo/BuddyBook-pink-logo.png"
+              src={logo}
               className="mx-auto mb-4 w-32"
             />
 

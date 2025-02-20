@@ -110,7 +110,7 @@ function CreateProfilePage() {
               </div>
 
               <div className="flex flex-col">
-                <label className="text-center">Where are you based?</label>
+                <label className="text-center">Where are you from?</label>
                 <input className="input" name="place" type="text" required />
               </div>
 

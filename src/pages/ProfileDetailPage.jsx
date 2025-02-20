@@ -8,7 +8,6 @@ import ReactionButtons from "../components/ReactionButtons";
 import dummyImage from "../assets/images/dummy-profile-image.png";
 
 import Loader from "../components/Loader";
-import "./ProfileDetailPage.css";
 import BackButton from "../components/BackButton";
 import CustomAnswer from "../components/CustomAnswer";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -129,24 +128,16 @@ function Profile() {
               </div>
             </div>
 
-            {/* Custom Question Section */}
-            <div className="mb-6">
-              <h1 className="text-lm font-semibold">
-                Add your own answer below 😇
-              </h1>
-            </div>
-
             <div className="absolute bottom-0 right-1 flex gap-5 space-x-2 hover:pointer mb-1">
-          <NavLink to={`/teams/${teamId}/members/${profileId}/edit`}>
-            <button>
-              <UserPen size={29} className="mt-2" />
-            </button>
-          </NavLink>
-          <button className="text-red-500" onClick={handleDelete}>
-            <Trash2 size={28} />
-          </button>
-        </div>
-
+              <NavLink to={`/teams/${teamId}/members/${profileId}/edit`}>
+                <button>
+                  <UserPen size={29} className="mt-2" />
+                </button>
+              </NavLink>
+              <button className="text-red-500" onClick={handleDelete}>
+                <Trash2 size={28} />
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -158,7 +149,7 @@ function Profile() {
       />
 
       <div className="flex-1 bg-gray-100 p-4 sm:p-6 rounded-lg shadow-lg mt-4">
-        <h2 className="text-xl font-semibold mb-4 sm:mb-6">
+        <h2 className="text-xl font-semibold mb-4 sm:mb-6 text-black drop-shadow-lg">
           Messages from Colleagues
         </h2>
 
@@ -166,10 +157,16 @@ function Profile() {
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Left half */}
           <div className="flex flex-col w-full lg:w-1/2 items-start">
-            <h2 className="font-semibold text-left ml-5 flex">
+            <h2 className="font-semibold text-left ml-5 flex ">
               {profile.customQuestion}
             </h2>
-            <div className="mt-4 flex justify-start w-full ml-5">
+            {/* Custom Question Section */}
+            <div className="ml-3">
+              <h1 className="text-xs !text-gray-400">
+                Add your own answer below 😇
+              </h1>
+            </div>
+            <div className="flex justify-start w-full ml-3">
               <CustomAnswer
                 teamId={teamId}
                 profileId={profileId}
@@ -186,7 +183,7 @@ function Profile() {
           </div>
 
           {/* Right half */}
-          <div className="w-full lg:w-1/2">
+          <div className="w-full lg:w-1/2 mt-1">
             <Comments
               teamId={teamId}
               profileId={profileId}

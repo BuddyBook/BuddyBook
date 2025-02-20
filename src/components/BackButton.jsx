@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { ArrowBigLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +10,7 @@ function BackButton({ text, to }) {
   };
 
   return (
-    <div className="w-full max-w-2xl mb-2">
+    <div className="mb-2 justify-start">
       <button
         onClick={handleClick}
         className="text-gray-600 text-sm hover:text-gray-900 flex items-center"

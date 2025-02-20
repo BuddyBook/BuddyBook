@@ -121,7 +121,7 @@ function MembersPage() {
 
   return (
     <div>
-      <div className="flex flex-col md:flex-row flex-wrap items-center gap-2  justify-center w-full px-10 mb-8 mt-8  ">
+      <div className="flex flex-col md:flex-row flex-wrap items-center gap-2 justify-center w-full px-6 pb-6 md:px-10 md:pb-0 md:mb-8 mb-12 mt-8">
         <div className="max-w-2xl ">
           <BackButton text="Back to Teams" to="/teams" />
         </div>

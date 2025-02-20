@@ -1,4 +1,4 @@
-# Buddy-Book !(https://github.com/BuddyBook/BuddyBook/blob/main/src/assets/images/logo/BuddyBook-final.png)
+# Buddy-Book ![logo](https://github.com/BuddyBook/BuddyBook/blob/main/src/assets/images/logo/BuddyBook-final.png)
 
 
 Buddy Book is a **social networking platform** designed to help users connect, share updates, and engage with their friends and colleagues.  

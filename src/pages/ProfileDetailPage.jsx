@@ -82,7 +82,7 @@ function Profile() {
       <div className="bg-white shadow-lg rounded-lg p-6 w-full md:w-4/5 mx-auto mb-5">
         <h1 className="text-3xl font-bold mb-4">{profile.name}'s Profile</h1>
 
-        <div className="flex flex-col md:flex-row justify-between mb-4">
+        <div className="flex flex-col md:flex-row justify-between mb-3">
           {/* Left Block */}
           <div className="flex flex-col items-center md:w-1/2 mb-4 relative group mr-8">
             <div className="bg-white p-4 shadow-md rounded-md mb-4 relative group-hover:shadow-[0_0_10px_rgb(255,165,0)] transition duration-300">
@@ -150,7 +150,7 @@ function Profile() {
                 </button>
               </NavLink>
               <button className="text-red-500" onClick={handleDelete}>
-                <Trash2 size={28} />
+                <Trash2 size={29} />
               </button>
             </div>
           </div>

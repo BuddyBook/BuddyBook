@@ -1,8 +1,8 @@
 # Buddy-Book <img src="https://github.com/BuddyBook/BuddyBook/blob/main/src/assets/images/logo/BuddyBook-final.png" width="30" alt="Buddy Book Logo">
 
-Buddy Book is an innovative platform designed to help users connect, share updates, and engage in meaningful interactions. It provides an intuitive and seamless experience, allowing users to create and manage team profiles while also enabling individuals to establish personal profiles within specific teams.
+Buddy Book is an interactive slambook website where users can create their own profile and invite friends to do the same. Each time a new team is created, an access ID is generated, which is required to join and view or add profiles within the team. The platform provides full CRUD (Create, Read, Update, Delete) functionality on the Firebase database, allowing users to manage their profiles and teams efficiently. It creates a dynamic and personalized space for users to connect.
 
-Each profile includes robust editing and deletion capabilities, empowering users to fully control their information. The platform is powered by Firebase API for secure user authentication and is efficiently deployed using Netlify for fast and reliable access.
+Each profile includes robust editing and deletion capabilities, empowering users to fully control their information.
 
 With a **responsive design**, and an intuitive interface, Buddy Book offers a smooth and interactive social networking experience.  
 

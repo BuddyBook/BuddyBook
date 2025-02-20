@@ -1,6 +1,7 @@
 import { useAuthState, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { NavLink, useNavigate } from "react-router-dom";
 import { auth } from "../utility/firebase";
+import logo from "../assets/images/logo/BuddyBook-final.png"
 
 function Homepage() {
   const [signInWithGoogle, credentials, signInLoading, signInError] =
@@ -31,7 +32,7 @@ function Homepage() {
           Welcome to BuddyBook
         </h1>
         <img
-          src="src/assets/images/logo/BuddyBook-pink-logo.png"
+          src={logo}
           className="mx-auto mb-4 w-32"
         />
 

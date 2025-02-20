@@ -96,7 +96,7 @@ function CreateProfilePage() {
         <BackButton text="Back to Team" to={`/teams/${teamId}`} />
       </div>
       <div>
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="form bg-gradient-to-r from-pink-100 to-blue-100" onSubmit={handleSubmit}>
           <div className="new-profile-title">
             <h2>
               <span>Create your profile 😎</span>

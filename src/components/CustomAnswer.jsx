@@ -44,6 +44,7 @@ function CustomAnswer({ teamId, profileId, user, onRefresh }) {
           value={answer}
           placeholder="Type your answer and hit enter..."
           onChange={handleChange}
+          required
         />
       </form>
     </div>

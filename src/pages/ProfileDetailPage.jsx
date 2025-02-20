@@ -115,13 +115,20 @@ function Profile() {
 
           {/* Right Block */}
           <div className="md:w-1/2 relative">
-            <div className="mb-4">
+            <div className="mb-3">
               <h1 className="text-xl font-semibold !text-gray-500">
                 More about me 😊
               </h1>
               <div className="mb-10">
-                <h2 className="text-lg mb-5">I am from {profile.place}</h2>
+              <div className="bg-yellow-100/60 p-2 rounded-lg shadow-inner mb-5">
+                <p className="text-lg">I am {profile.age} years young</p>
+                </div>
+                <div className="bg-orange-100/60 p-2 rounded-lg shadow-inner mb-5">
+                <h2 className="text-lg">I am from {profile.place}</h2>
+                </div>
+                <div className="bg-green-100/60 p-2 rounded-lg shadow-inner mb-5">
                 <h2 className="text-lg">My hobbies are {profile.hobbies}</h2>
+                </div>
               </div>
 
               <div className="mb-4">
@@ -131,7 +138,7 @@ function Profile() {
                 <h2 className="font-semibold mb-3">
                   If this course had a mascot, what would it be?
                 </h2>
-                <div className="bg-gray-100 p-3 rounded-lg shadow-inner mb-10">
+                <div className="bg-pink-100/60 p-3 rounded-lg shadow-inner mb-10">
                   <p>{profile.question1}</p>
                 </div>
               </div>
@@ -141,7 +148,7 @@ function Profile() {
               <h2 className="font-semibold mb-3">
                 If your life had a theme song, what would it be?
               </h2>
-              <div className="bg-gray-100 p-3 rounded-lg shadow-inner mb-10">
+              <div className="bg-blue-100/60 p-3 rounded-lg shadow-inner mb-10">
                 <p>{profile.question2}</p>
               </div>
             </div>

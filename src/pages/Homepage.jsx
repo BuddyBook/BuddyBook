@@ -55,7 +55,7 @@ function Homepage() {
           <br />
           <br />
           <NavLink to="/about" className="underline">
-            About us →
+            About us
           </NavLink>
         </p>
       </div>

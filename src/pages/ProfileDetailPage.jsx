@@ -8,7 +8,6 @@ import ReactionButtons from "../components/ReactionButtons";
 import dummyImage from "../assets/images/dummy-profile-image.png";
 
 import Loader from "../components/Loader";
-import "./ProfileDetailPage.css";
 import BackButton from "../components/BackButton";
 import CustomAnswer from "../components/CustomAnswer";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -137,16 +136,15 @@ function Profile() {
             </div>
 
             <div className="absolute bottom-0 right-1 flex gap-5 space-x-2 hover:pointer mb-1">
-          <NavLink to={`/teams/${teamId}/members/${profileId}/edit`}>
-            <button>
-              <UserPen size={29} className="mt-2" />
-            </button>
-          </NavLink>
-          <button className="text-red-500" onClick={handleDelete}>
-            <Trash2 size={28} />
-          </button>
-        </div>
-
+              <NavLink to={`/teams/${teamId}/members/${profileId}/edit`}>
+                <button>
+                  <UserPen size={29} className="mt-2" />
+                </button>
+              </NavLink>
+              <button className="text-red-500" onClick={handleDelete}>
+                <Trash2 size={28} />
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -193,7 +191,9 @@ function Profile() {
               user={user}
               onRefresh={() => getProfile()}
             />
-            <div className="message-box mt-4">
+
+            {/* Message Box with Scrollable Content */}
+            <div className="message-box mt-4 h-90 overflow-y-auto border border-gray-300 rounded-lg p-2">
               <div>
                 {comments.length > 0 && <CommentsCard list={comments} />}
               </div>

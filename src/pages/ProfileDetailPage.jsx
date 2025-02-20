@@ -167,7 +167,7 @@ function Profile() {
         </div>
       </div>
 
-      <div className="flex-1 bg-gradient-to-br from-white to-gray-100 p-4 sm:p-6 rounded-lg shadow-lg mt-4 md:ml-17 md:mr-17 xl:ml-45 xl:mr-45">
+      <div className="flex-1 bg-gradient-to-br from-white to-gray-100 p-4 sm:p-6 rounded-lg shadow-lg mt-4 md:ml-17 md:mr-17 xl:ml-42 xl:mr-42">
         <h2 className="text-xl font-semibold mb-4 sm:mb-6 text-black drop-shadow-lg">
           Messages from Colleagues
         </h2>

@@ -64,7 +64,7 @@ function ReactionButtons() {
   };
 
   return (
-    <div className="flex justify-center mt-5">
+    <div className="flex justify-center mt-0 mb-4">
       <div className="flex justify-center items-center text-xl shadow-xl z-10 bg-white gap-1.5 p-1 pl-0.5 pr-1 rounded-xl">
         {reactions.map((reaction, index) => (
           <button

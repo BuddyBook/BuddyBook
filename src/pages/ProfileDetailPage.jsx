@@ -1,18 +1,12 @@
 import axios from "axios";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../config/api";
-import {
-  Trash2,
-  UserPen,
-  Smile,
-  Paperclip,
-  Palmtree,
-  Scroll,
-} from "lucide-react";
+import { Trash2, UserPen, Smile, Paperclip, Palmtree } from "lucide-react";
 import ReactionButtons from "../components/ReactionButtons";
 
 import dummyImage from "../assets/images/dummy-profile-image.png";
+
 import Loader from "../components/Loader";
 import "./ProfileDetailPage.css";
 import BackButton from "../components/BackButton";
@@ -170,7 +164,7 @@ function Profile() {
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Left half */}
           <div className="flex flex-col w-full lg:w-1/2 items-start">
-            <h2 className="font-semibold text-left ml-5">
+            <h2 className="font-semibold text-left ml-5 flex">
               {profile.customQuestion}
             </h2>
             <div className="mt-4 flex justify-start w-full ml-5">

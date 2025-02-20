@@ -83,16 +83,6 @@ function Profile() {
     <div className="profile-page p-4 md:p-8">
       <div className="flex justify-between items-center mb-4 mt-2">
         <BackButton text="Back to Profiles" to={`/teams/${teamId}`} />
-        <div className="flex gap-5 space-x-2 hover:pointer mb-1">
-          <NavLink to={`/teams/${teamId}/members/${profileId}/edit`}>
-            <button>
-              <UserPen size={25} className="mt-2" />
-            </button>
-          </NavLink>
-          <button className="text-red-500" onClick={handleDelete}>
-            <Trash2 size={25} />
-          </button>
-        </div>
       </div>
 
       <div className="bg-white shadow-lg rounded-lg p-6 w-full md:w-4/5 mx-auto mb-5">
@@ -125,7 +115,7 @@ function Profile() {
           </div>
 
           {/* Right Block */}
-          <div className="md:w-1/2">
+          <div className="md:w-1/2 relative">
             <div className="mb-4">
               <h1 className="text-xl font-semibold">My answers</h1>
               <h2 className="font-semibold">
@@ -151,6 +141,18 @@ function Profile() {
                 Add your own answer below 😇
               </h1>
             </div>
+
+            <div className="absolute bottom-0 right-1 flex gap-5 space-x-2 hover:pointer mb-1">
+          <NavLink to={`/teams/${teamId}/members/${profileId}/edit`}>
+            <button>
+              <UserPen size={29} className="mt-2" />
+            </button>
+          </NavLink>
+          <button className="text-red-500" onClick={handleDelete}>
+            <Trash2 size={28} />
+          </button>
+        </div>
+
           </div>
         </div>
       </div>

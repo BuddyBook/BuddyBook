@@ -152,20 +152,6 @@ function Profile() {
                 <Trash2 size={29} />
               </button>
             </div>
-<<<<<<< HEAD
-
-            <div className="absolute bottom-0 right-1 flex gap-5 space-x-2 hover:pointer mb-1">
-              <NavLink to={`/teams/${teamId}/members/${profileId}/edit`}>
-                <button>
-                  <UserPen size={29} className="mt-2" />
-                </button>
-              </NavLink>
-              <button className="text-red-500" onClick={handleDelete}>
-                <Trash2 size={28} />
-              </button>
-            </div>
-=======
->>>>>>> refs/remotes/origin/main
           </div>
         </div>
       </div>
@@ -197,7 +183,7 @@ function Profile() {
               />
             </div>
 
-            <div className="mb-3 w-full">
+            <div className="mb-3 w-full -mt-2">
               {customAnswers.length > 0 && (
                 <CardCarousel list={customAnswers} />
               )}
@@ -206,12 +192,6 @@ function Profile() {
 
           {/* Right half */}
           <div className="w-full lg:w-1/2">
-            {/* Custom Question Section */}
-            <div className="mb-6">
-              <h1 className="text-lm font-semibold">
-                Add your own answer below 😇
-              </h1>
-            </div>
             <Comments
               teamId={teamId}
               profileId={profileId}

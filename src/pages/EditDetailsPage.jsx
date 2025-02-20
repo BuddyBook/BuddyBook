@@ -101,7 +101,7 @@ function EditProfilePage() {
       </div>
 
       <div>
-        <form className="form" onSubmit={handleSubmit}>
+        <form className="form bg-gradient-to-r from-pink-100 to-blue-100" onSubmit={handleSubmit}>
           <div className="new-profile-title">
             <h2>
               <span>Edit your profile 😎</span>
@@ -122,7 +122,7 @@ function EditProfilePage() {
               </div>
 
               <div className="flex flex-col">
-                <label className="text-center">Where are you based?</label>
+                <label className="text-center">Where are you from?</label>
                 <input
                   className="input"
                   name="place"

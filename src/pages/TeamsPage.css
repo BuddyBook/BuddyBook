@@ -5,13 +5,11 @@ h1{
 }
 
 .form-new {
-  --bg-color: rgb(244, 212, 243);
   --main-color: black;
   padding: 30px;
-  background: rgb(244, 212, 243);
   border-radius: 5px;
   border: 2px solid var(--main-color);
-  box-shadow: 4px 4px var(--main-color);
+  box-shadow: 2px 2px var(--main-color);
 }
 
 .input {

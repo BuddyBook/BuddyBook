@@ -1,10 +1,8 @@
 /* From Uiverse.io */ 
 .form {
-   
     --bg-color: rgb(255, 255, 255);
     --main-color: black;
     padding: 20px;
-    background: rgb(243, 238, 231);
     border-radius: 5px;
     border: 2px solid var(--main-color);
     box-shadow: 2px 2px var(--main-color);

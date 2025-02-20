@@ -1,8 +1,29 @@
-# React + Vite
+# Buddy-Book !(https://github.com/BuddyBook/BuddyBook/blob/main/src/assets/images/logo/BuddyBook-final.png)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+Buddy Book is a **social networking platform** designed to help users connect, share updates, and engage with their friends and colleagues.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features  
+
+✅ User Authentication (Sign Up & Login)  
+✅ Profile Creation & Editing  
+✅ Friend Requests & Connections  
+✅ Messaging & Comments  
+✅ Responsive UI with Tailwind CSS  
+✅ Real-time Notifications  
+
+## 🛠️ Tech Stack  
+
+- **Frontend:** React.js, Tailwind CSS  
+- **Backend:** Node.js, Express.js  
+- **Database:** MongoDB  
+- **Authentication:** JWT (JSON Web Tokens)  
+- **State Management:** React Context / Redux  
+
+## 🎬 Getting Started  
+
+### 1️⃣ **Clone the Repository**  
+
+```sh
+git clone https://github.com/yourusername/buddy-book.git
+cd buddy-book

@@ -6,20 +6,36 @@ import { Users, Trash2, UserPen } from "lucide-react"; // Import icons
 
 import "../pages/TeamsPage.css";
 import Loader from "../components/Loader";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../utility/firebase";
+import { nanoid } from "nanoid";
+import AccessIdDialog from "../components/AccessIdDialog";
 
 function TeamsPage() {
   const [teams, setTeams] = useState(null);
   const [teamName, setTeamName] = useState("");
   const [createdBy, setCreatedBy] = useState("");
-  const [timestamp, setTimestamp] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [editingTeam, setEditingTeam] = useState(null);
+  const [accessId, setAccessId] = useState("");
   const [loading, setLoading] = useState(true); // New state to track loading
+  const [showAccessIdModel, setShowAccessIdModal] = useState(false);
+  const [selectedTeam, setSelectedTeam] = useState();
   const navigate = useNavigate();
+
+  const [user] = useAuthState(auth);
 
   useEffect(() => {
     fetchTeams();
   }, []);
+
+  //used to populate the created by input field with the user name.
+
+  useEffect(() => {
+    if (user) {
+      setCreatedBy(user.displayName);
+    }
+  }, [user]);
 
   const fetchTeams = () => {
     axios
@@ -55,7 +71,6 @@ function TeamsPage() {
           const teamData = {
             ...existingData,
             teamName,
-            createdBy,
           };
 
           return axios.put(`${API_URL}/teams/${editingTeam}.json`, teamData);
@@ -72,8 +87,10 @@ function TeamsPage() {
     } else {
       const teamData = {
         teamName,
-        timestamp: editingTeam ? timestamp : new Date().toLocaleString(),
+        timestamp: new Date().toLocaleString(),
         createdBy,
+        createdByEmail: user.email, //to store the user email
+        accessId,
       };
 
       axios
@@ -109,6 +126,16 @@ function TeamsPage() {
       });
   };
 
+  const handleAcessOnClose = (input) => {
+    setShowAccessIdModal(false);
+    if (input && input == selectedTeam.accessId) {
+      navigate(`/teams/${selectedTeam.id}`);
+    } else {
+      alert("The id entered is invalid,please enter correct id");
+    }
+    setSelectedTeam(undefined);
+  };
+
   const colorSets = [
     {
       bg: "bg-yellow-100",
@@ -140,6 +167,7 @@ function TeamsPage() {
 
   return (
     <div>
+      <AccessIdDialog open={showAccessIdModel} onClose={handleAcessOnClose} />
       <div className="max-w-4xl mx-auto px-4 pb-6 sm:px-6 sm:pb-8">
         <h1 className="text-4xl font-bold text-black drop-shadow-lg mb-4 mt-4">
           Teams Page
@@ -149,9 +177,9 @@ function TeamsPage() {
           <button
             onClick={() => {
               setTeamName("");
-              setCreatedBy("");
               setEditingTeam(null);
               setShowModal(true);
+              setAccessId(nanoid(5));
             }}
             className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-full mb-8 transition duration-300 shadow-md"
           >
@@ -183,7 +211,10 @@ function TeamsPage() {
                     members
                   </p>
                   <button
-                    onClick={() => navigate(`/teams/${team.id}`)}
+                    onClick={() => {
+                      setShowAccessIdModal(true);
+                      setSelectedTeam(team);
+                    }}
                     className="text-sm border-1 border-gray-400 hover:text-gray-600 text-black font-bold py-1.5 px-3 rounded-full mb-4 transition duration-300 relative z-10"
                   >
                     View Team
@@ -240,27 +271,30 @@ function TeamsPage() {
                     <input
                       type="text"
                       value={createdBy}
-                      onChange={(e) => setCreatedBy(e.target.value)}
+                      onChange={(e) => {
+                        setCreatedBy(e.target.value);
+                      }}
                       className="mt-2 p-2 w-full border-2 border-black bg-gray-100 rounded-md focus:ring-pink-800 focus:border-pink-500 text-center"
                       required
                     />
-
-                    <div className="mt-4">
-                      <label className="block text-sm font-medium text-gray-700 text-center">
-                        Timestamp
-                      </label>
-                      <input
-                        type="text"
-                        placeholder={new Date().toLocaleDateString()}
-                        value={timestamp}
-                        readOnly
-                        className="mt-2 p-2 w-full border border-gray-300 rounded-md bg-gray-100 text-center"
-                      />
-                    </div>
+                    <label className="block text-sm font-medium text-gray-700 text-center mt-7">
+                      Access Id()
+                    </label>
+                    <input
+                      type="text"
+                      value={accessId}
+                      readOnly
+                      className="mt-2 p-2 w-full border-2 border-black bg-gray-100 rounded-md focus:ring-pink-800 focus:border-pink-500 text-center"
+                      required
+                    />
+                    <small className="text-red-800 font-bold">
+                      Please copy and share with people who want to join your
+                      team. This is one time code do not lose it
+                    </small>
                   </div>
                 )}
 
-                <div className="flex justify-around mt-6 space-x-4">
+                <div className="flex justify-around space-x-4">
                   <button type="submit" className="button-confirm">
                     {editingTeam ? "Update" : "Create Team"}
                   </button>

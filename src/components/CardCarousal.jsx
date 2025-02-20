@@ -38,13 +38,7 @@ export default CardCarousel;
 function SliderCard({ item }) {
   return (
     <div>
-      <div
-        className="backdrop-blur-sm rounded-xl 
-              
-              transition-all duration-300 
-              
-              border border-purple-100"
-      >
+      <div className="backdrop-blur-sm rounded-xl transition-all duration-300 border border-purple-100">
         <h1
           className="text-lg sm:text-xl md:text-2xl 
                 font-bold 

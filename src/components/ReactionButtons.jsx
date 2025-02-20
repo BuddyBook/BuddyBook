@@ -48,7 +48,7 @@ function ReactionButtons() {
   const handleReaction = (type) => {
     const current = counts[type];
     const newCount = (current?.count || 0) + 1;
-    
+
     setCounts((prevCounts) => ({
       ...prevCounts,
       [type]: { ...current, count: newCount },
@@ -56,7 +56,8 @@ function ReactionButtons() {
 
     const reactionUrl = `${API_URL}/teams/${teamId}/members/${profileId}/reactions/${type}/${current.id}.json`;
 
-    axios.put(reactionUrl, { count: newCount })
+    axios
+      .put(reactionUrl, { count: newCount })
       .then((response) => {
         console.log("Reaction updated", response.data);
       })

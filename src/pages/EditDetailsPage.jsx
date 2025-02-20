@@ -1,10 +1,12 @@
-import "../pages/CreateProfilePage.css";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { API_URL } from "../config/api";
+
 import BackButton from "../components/BackButton";
 import Loader from "../components/Loader";
+
+import "../pages/CreateProfilePage.css";
 
 function EditProfilePage() {
   const { teamId, profileId } = useParams();
@@ -101,7 +103,10 @@ function EditProfilePage() {
       </div>
 
       <div>
-        <form className="form bg-gradient-to-r from-pink-100 to-blue-100" onSubmit={handleSubmit}>
+        <form
+          className="form bg-gradient-to-r from-pink-100 to-blue-100"
+          onSubmit={handleSubmit}
+        >
           <div className="new-profile-title">
             <h2>
               <span>Edit your profile 😎</span>

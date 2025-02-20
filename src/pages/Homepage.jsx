@@ -1,7 +1,8 @@
 import { useAuthState, useSignInWithGoogle } from "react-firebase-hooks/auth";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../utility/firebase";
-import logo from "../assets/images/logo/BuddyBook-final.png"
+
+import logo from "../assets/images/logo/BuddyBook-final.png";
 
 function Homepage() {
   const [signInWithGoogle, credentials, signInLoading, signInError] =
@@ -31,10 +32,7 @@ function Homepage() {
         <h1 className="text-5xl font-bold text-pastelPink mb-4 text-center">
           Welcome to BuddyBook
         </h1>
-        <img
-          src={logo}
-          className="mx-auto mb-4 w-32"
-        />
+        <img src={logo} className="mx-auto mb-4 w-32" />
 
         <p className="text-gray-700 mb-6 text-center">
           A place to collect thoughts, memories, and messages from friends. Join
@@ -51,12 +49,7 @@ function Homepage() {
           </button>
         </div>
         <p className="font-handwriting text-sm text-vibrantPurple text-center">
-          Created by Julia Solias & Uzma Shaik.
-          <br />
-          <br />
-          <NavLink to="/about" className="underline">
-            About us
-          </NavLink>
+          Created by Julia Solias & Uzma Shaik 💌
         </p>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import logo from "../assets/images/logo/BuddyBook-final.png"
+import logo from "../assets/images/logo/BuddyBook-final.png";
 
 const teamMembers = [
   {
@@ -29,13 +29,10 @@ function AboutPage() {
               stay in touch! 😊
             </p>
 
-            <img
-              src={logo}
-              className="mx-auto mb-4 w-32"
-            />
+            <img src={logo} className="mx-auto mb-4 w-32" />
 
             <p className="text-lg">
-              This page was created by Uzma Shaik and Julia Solias. <br />{" "}
+              This page was created by Uzma Shaik and Julia Solias. <br />
               You'll find our contact details below.
             </p>
           </div>

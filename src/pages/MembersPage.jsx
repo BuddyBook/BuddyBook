@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { API_URL } from "../config/api";
 
-import "../pages/MembersPage.css";
+import BackButton from "../components/BackButton";
 import Loader from "../components/Loader";
 
 import { Plus, User } from "lucide-react";
-import BackButton from "../components/BackButton";
+import "../pages/MembersPage.css";
 
 function MembersPage() {
   const { id } = useParams();

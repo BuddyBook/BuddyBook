@@ -1,4 +1,5 @@
 import "../pages/Error.css";
+
 function ErrorPage() {
   return (
     <div className="main_wrapper">

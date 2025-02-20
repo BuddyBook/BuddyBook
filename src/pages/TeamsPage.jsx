@@ -2,14 +2,7 @@ import axios from "axios";
 import { API_URL } from "../config/api";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Users,
-  Trash2,
-  Settings,
-  BookOpen,
-  UserPen,
-  Smile,
-} from "lucide-react"; // Import icons
+import { Users, Trash2, UserPen } from "lucide-react"; // Import icons
 
 import "../pages/TeamsPage.css";
 import Loader from "../components/Loader";

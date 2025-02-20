@@ -1,7 +1,7 @@
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import { auth } from "../utility/firebase";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { House, LogOut } from "lucide-react";
+import { House, Info, LogOut } from "lucide-react";
 
 import logo from "../assets/images/logo/BuddyBook-final.png";
 
@@ -48,6 +48,14 @@ function Navbar() {
             <span className="font-medium">Home</span>
           </NavLink>
         )}
+
+        <NavLink
+          to="/about"
+          className="flex items-center gap-2 text-gray-700 transition-colors duration-300 hover:text-pink-500 group"
+        >
+          <Info />
+          <span className="font-medium">About</span>
+        </NavLink>
 
         {/* Logout Button (Only if user exists) */}
         {user && (

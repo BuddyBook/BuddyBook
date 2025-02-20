@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import "../components/Comments.css";
 
 function CommentsCard({ list }) {

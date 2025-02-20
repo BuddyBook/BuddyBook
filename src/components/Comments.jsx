@@ -34,7 +34,7 @@ function Comments({ teamId, profileId, user, onRefresh }) {
           name="text"
           type="text"
           value={comment}
-          placeholder="Leave me a message here😇..."
+          placeholder="Leave me a message here... 🙌"
           onChange={handleChange}
           required
         />

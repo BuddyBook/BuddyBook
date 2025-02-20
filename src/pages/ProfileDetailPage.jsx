@@ -1,20 +1,20 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../utility/firebase";
 import { API_URL } from "../config/api";
 import { Trash2, UserPen, Smile, Paperclip, Palmtree } from "lucide-react";
+
 import ReactionButtons from "../components/ReactionButtons";
-
-import dummyImage from "../assets/images/dummy-profile-image.png";
-
 import Loader from "../components/Loader";
 import BackButton from "../components/BackButton";
 import CustomAnswer from "../components/CustomAnswer";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../utility/firebase";
 import Comments from "../components/Comments";
 import CardCarousel from "../components/CardCarousal";
 import CommentsCard from "../components/CommentsCard";
+
+import dummyImage from "../assets/images/dummy-profile-image.png";
 
 function Profile() {
   const { profileId, teamId } = useParams();

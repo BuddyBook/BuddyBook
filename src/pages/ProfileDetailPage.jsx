@@ -83,7 +83,7 @@ function Profile() {
 
         <div className="flex flex-col md:flex-row justify-between mb-3">
           {/* Left Block */}
-          <div className="flex flex-col items-center md:w-1/2 mb-4 relative group mr-8">
+          <div className="flex flex-col items-center md:w-1/2 mb-4 relative group mr-8 pl-11">
             <div className="bg-white p-4 shadow-md rounded-md mb-4 relative group-hover:shadow-[0_0_10px_rgb(255,165,0)] transition duration-300">
               <Paperclip
                 className="text-gray-700 absolute top-0 left-0 -m-4"
@@ -116,14 +116,18 @@ function Profile() {
           {/* Right Block */}
           <div className="md:w-1/2 relative">
             <div className="mb-4">
-              <h1 className="text-xl font-semibold">More about me 😊</h1>
+              <h1 className="text-xl font-semibold !text-gray-500">
+                More about me 😊
+              </h1>
               <div className="mb-10">
                 <h2 className="text-lg mb-5">I am from {profile.place}</h2>
                 <h2 className="text-lg">My hobbies are {profile.hobbies}</h2>
               </div>
 
               <div className="mb-4">
-                <h1 className="text-xl font-semibold">My answers</h1>
+                <h1 className="text-xl font-semibold !text-gray-500">
+                  My answers
+                </h1>
                 <h2 className="font-semibold mb-3">
                   If this course had a mascot, what would it be?
                 </h2>
@@ -156,8 +160,8 @@ function Profile() {
         </div>
       </div>
 
-      <div className="flex-1 bg-gradient-to-br from-white to-gray-100 p-4 sm:p-6 rounded-lg shadow-lg mt-4">
-        <h2 className="text-xl font-semibold mb-4 sm:mb-6">
+      <div className="flex-1 bg-gradient-to-br from-white to-gray-100 p-4 sm:p-6 rounded-lg shadow-lg mt-4 md:ml-17 md:mr-17 xl:ml-45 xl:mr-45">
+        <h2 className="text-xl font-semibold mb-4 sm:mb-6 text-black drop-shadow-lg">
           Messages from Colleagues
         </h2>
 

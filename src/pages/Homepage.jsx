@@ -26,7 +26,7 @@ function Homepage() {
   };
 
   return (
-    <div className="mt-25 p-8 flex justify-center items-center">
+    <div className="mt-8 p-8 flex justify-center items-center">
       <div className="bg-white shadow-lg rounded-lg p-8 w-full md:w-3/5 bg-gradient-to-b from-purple-50 to-blue-50">
         <h1 className="text-5xl font-bold text-pastelPink mb-4 text-center">
           Welcome to BuddyBook
@@ -55,7 +55,7 @@ function Homepage() {
           <br />
           <br />
           <NavLink to="/about" className="underline">
-            About us →
+            About us
           </NavLink>
         </p>
       </div>

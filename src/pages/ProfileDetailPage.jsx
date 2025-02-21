@@ -5,6 +5,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utility/firebase";
 import { API_URL } from "../config/api";
 import { Trash2, UserPen, Smile, Paperclip, Palmtree } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 import ReactionButtons from "../components/ReactionButtons";
 import Loader from "../components/Loader";
@@ -111,7 +113,16 @@ function Profile() {
               teamId={teamId}
               profileId={profileId}
             />
+
+            <div className="mt-5"> 
+              <a href={profile.linkedIn} target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-blue-300">
+               <FontAwesomeIcon icon={faLinkedin} size="2x" />
+               </a>
+            </div>
+
           </div>
+
+        
 
           {/* Right Block */}
           <div className="md:w-1/2 relative">

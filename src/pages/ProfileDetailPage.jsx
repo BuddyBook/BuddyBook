@@ -45,7 +45,7 @@ function Profile() {
     axios
       .delete(`${API_URL}/teams/${teamId}/members/${profileId}.json`)
       .then(() => {
-        navigate(-1);
+        navigate(`/teams/${teamId}`);
       })
       .catch((error) => {
         console.log("Error", error);
@@ -114,15 +114,17 @@ function Profile() {
               profileId={profileId}
             />
 
-            <div className="mt-5"> 
-              <a href={profile.linkedIn} target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-blue-300">
-               <FontAwesomeIcon icon={faLinkedin} size="2x" />
-               </a>
+            <div className="mt-5">
+              <a
+                href={profile.linkedIn}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-700 hover:text-blue-300"
+              >
+                <FontAwesomeIcon icon={faLinkedin} size="2x" />
+              </a>
             </div>
-
           </div>
-
-        
 
           {/* Right Block */}
           <div className="md:w-1/2 relative">
@@ -131,14 +133,14 @@ function Profile() {
                 More about me 😊
               </h1>
               <div className="mb-10">
-              <div className="bg-yellow-100/60 p-2 rounded-lg shadow-inner mb-5">
-                <p className="text-lg">I am {profile.age} years young</p>
+                <div className="bg-yellow-100/60 p-2 rounded-lg shadow-inner mb-5">
+                  <p className="text-lg">I am {profile.age} years young</p>
                 </div>
                 <div className="bg-orange-100/60 p-2 rounded-lg shadow-inner mb-5">
-                <h2 className="text-lg">I am from {profile.place}</h2>
+                  <h2 className="text-lg">I am from {profile.place}</h2>
                 </div>
                 <div className="bg-green-100/60 p-2 rounded-lg shadow-inner mb-5">
-                <h2 className="text-lg">My hobbies are {profile.hobbies}</h2>
+                  <h2 className="text-lg">My hobbies are {profile.hobbies}</h2>
                 </div>
               </div>
 

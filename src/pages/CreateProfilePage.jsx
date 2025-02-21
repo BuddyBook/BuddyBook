@@ -14,8 +14,6 @@ function CreateProfilePage() {
 
   const [image, setImage] = useState(null);
   const [waitingForImageUrl, setWaitingForImageUrl] = useState(false);
-  console.log("Cloud Name:", import.meta.env.VITE_CLOUD_NAME);
-  console.log("Upload Preset:", import.meta.env.VITE_UNSIGNED_UPLOAD_PRESET);
 
   const handleImage = (event) => {
     setWaitingForImageUrl(true);

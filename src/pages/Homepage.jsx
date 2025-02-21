@@ -49,7 +49,7 @@ function Homepage() {
           </button>
         </div>
         <p className="font-handwriting text-sm text-vibrantPurple text-center">
-          Created by Julia Solias & Uzma Shaik 💌
+          Created by Uzma Shaik & Julia Solias 💌
         </p>
       </div>
     </div>

@@ -17,14 +17,16 @@ function TeamsPage() {
   const [createdBy, setCreatedBy] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [editingTeam, setEditingTeam] = useState(null);
-  const [accessId, setAccessId] = useState("");
   const [loading, setLoading] = useState(true); // New state to track loading
+
+  const [accessId, setAccessId] = useState("");
   const [showAccessIdModel, setShowAccessIdModal] = useState(false);
   const [selectedTeam, setSelectedTeam] = useState();
   const navigate = useNavigate();
 
-  const [user] = useAuthState(auth);
+  const [user] = useAuthState(auth); // Fetch current authenticated user
 
+  // Fetch teams when the component mounts
   useEffect(() => {
     fetchTeams();
   }, []);
@@ -37,12 +39,14 @@ function TeamsPage() {
     }
   }, [user]);
 
+  // Function to fetch teams data from the API
   const fetchTeams = () => {
     axios
       .get(`${API_URL}/teams.json`)
       .then((response) => {
         const teamsObject = response.data;
         if (teamsObject) {
+          // Convert the object into an array
           const teamsArr = Object.keys(teamsObject).map((id) => ({
             id,
             ...teamsObject[id],
@@ -59,10 +63,12 @@ function TeamsPage() {
       });
   };
 
+  // Handle form submission for creating or editing a team
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (editingTeam) {
+      // Update an existing team
       axios
         .get(`${API_URL}/teams/${editingTeam}.json`)
         .then((response) => {
@@ -76,7 +82,7 @@ function TeamsPage() {
           return axios.put(`${API_URL}/teams/${editingTeam}.json`, teamData);
         })
         .then(() => {
-          fetchTeams();
+          fetchTeams(); // Refresh the teams list
           setShowModal(false);
           setEditingTeam(null);
         })
@@ -85,6 +91,7 @@ function TeamsPage() {
           alert("Failed to update team. Please try again.");
         });
     } else {
+      // Create a new team
       const teamData = {
         teamName,
         timestamp: new Date().toLocaleString(),
@@ -96,10 +103,10 @@ function TeamsPage() {
       axios
         .post(`${API_URL}/teams.json`, teamData)
         .then((response) => {
-          const teamId = response.data.name;
-          fetchTeams();
+          const teamId = response.data.name; // Get the new team's ID
+          fetchTeams(); // Refresh the teams list
           setShowModal(false);
-          navigate(`/teams/${teamId}`);
+          navigate(`/teams/${teamId}`); // Redirect to the new team's page
         })
         .catch((error) => {
           console.error("Error creating team:", error);
@@ -108,12 +115,14 @@ function TeamsPage() {
     }
   };
 
+  // Handle team editing
   const handleEdit = (id, name) => {
     setEditingTeam(id);
     setTeamName(name);
     setShowModal(true);
   };
 
+  // Handle team deletion
   const handleDelete = (id) => {
     axios
       .delete(`${API_URL}/teams/${id}.json`)
@@ -126,6 +135,7 @@ function TeamsPage() {
       });
   };
 
+  // Handle access ID validation before navigating to a team page
   const handleAcessOnClose = (input) => {
     setShowAccessIdModal(false);
     if (input && input == selectedTeam.accessId) {
@@ -136,6 +146,7 @@ function TeamsPage() {
     setSelectedTeam(undefined);
   };
 
+  // Predefined color sets for styling teams dynamically
   const colorSets = [
     {
       bg: "bg-yellow-100",
@@ -157,6 +168,7 @@ function TeamsPage() {
     { bg: "bg-green-100", border: "border-green-200", icon: "text-green-400" },
   ];
 
+  // Show loading spinner while fetching data
   if (loading) {
     return (
       <div>
@@ -167,12 +179,14 @@ function TeamsPage() {
 
   return (
     <div>
+      {/* Access ID modal for entering the access ID before viewing a team */}
       <AccessIdDialog open={showAccessIdModel} onClose={handleAcessOnClose} />
       <div className="max-w-4xl mx-auto px-4 pb-6 sm:px-6 sm:pb-8">
         <h1 className="text-4xl font-bold text-black drop-shadow-lg mb-4 mt-4">
           Teams Page
         </h1>
 
+        {/* Button to create a new team */}
         {!showModal && (
           <button
             onClick={() => {
@@ -187,6 +201,7 @@ function TeamsPage() {
           </button>
         )}
 
+        {/* Display the list of teams if there are any */}
         {teams.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {teams.map((team, index) => {
@@ -219,6 +234,8 @@ function TeamsPage() {
                   >
                     View Team
                   </button>
+
+                  {/* Edit and delete buttons */}
                   <div className="flex justify-center space-x-4 relative z-10">
                     <button
                       onClick={() =>
@@ -243,6 +260,7 @@ function TeamsPage() {
           <p className="text-center text-gray-500 mt-4">No teams available.</p>
         )}
 
+        {/* Modal for creating or editing a team */}
         {showModal && (
           <div className="fixed inset-0 bg-white flex justify-center items-center">
             <div className="form-new bg-gradient-to-r from-pink-100 to-blue-100 p-8 rounded-lg shadow-lg max-w-md w-full relative border-5 border-pink-300">
@@ -263,6 +281,7 @@ function TeamsPage() {
                   />
                 </div>
 
+                {/* Additional fields for creating a new team */}
                 {!editingTeam && (
                   <div>
                     <label className="block text-sm font-medium text-gray-700 text-center">
@@ -277,6 +296,8 @@ function TeamsPage() {
                       className="mt-2 p-2 w-full border-2 border-black bg-gray-100 rounded-md focus:ring-pink-800 focus:border-pink-500 text-center"
                       required
                     />
+
+                    {/* Display the auto-generated access ID */}
                     <label className="block text-sm font-medium text-gray-700 text-center mt-7">
                       Access Id()
                     </label>
@@ -287,6 +308,8 @@ function TeamsPage() {
                       className="mt-2 p-2 w-full border-2 border-black bg-gray-100 rounded-md focus:ring-pink-800 focus:border-pink-500 text-center"
                       required
                     />
+
+                    {/* Access ID instructions */}
                     <small className="text-red-800 font-bold">
                       Please copy and share with people who want to join your
                       team. This is one time code do not lose it
@@ -294,6 +317,7 @@ function TeamsPage() {
                   </div>
                 )}
 
+                {/* Action buttons */}
                 <div className="flex justify-around space-x-4">
                   <button type="submit" className="button-confirm">
                     {editingTeam ? "Update" : "Create Team"}

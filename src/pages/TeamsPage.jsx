@@ -10,6 +10,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utility/firebase";
 import { nanoid } from "nanoid";
 import AccessIdDialog from "../components/AccessIdDialog";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 function TeamsPage() {
   const [teams, setTeams] = useState(null);
@@ -21,6 +22,7 @@ function TeamsPage() {
 
   const [accessId, setAccessId] = useState("");
   const [showAccessIdModel, setShowAccessIdModal] = useState(false);
+  const [actionType, setActionType] = useState(null);
   const [selectedTeam, setSelectedTeam] = useState();
   const navigate = useNavigate();
 
@@ -122,28 +124,41 @@ function TeamsPage() {
     setShowModal(true);
   };
 
-  // Handle team deletion
-  const handleDelete = (id) => {
-    axios
-      .delete(`${API_URL}/teams/${id}.json`)
-      .then(() => {
-        fetchTeams();
-      })
-      .catch((error) => {
-        console.error("Error deleting team:", error);
-        alert("Failed to delete team. Please try again.");
-      });
+  // Handle opening access ID modal for different actions
+
+  const handleRequestAccess = (team, action) => {
+    setSelectedTeam(team);
+    setActionType(action); // Set the action type: "view" or "delete"
+    setShowAccessIdModal(true);
   };
 
   // Handle access ID validation before navigating to a team page
   const handleAcessOnClose = (input) => {
     setShowAccessIdModal(false);
-    if (input && input == selectedTeam.accessId) {
-      navigate(`/teams/${selectedTeam.id}`);
+
+    if (!input) {
+      return; // Do nothing if input is empty
+    }
+
+    if (input && input == selectedTeam?.accessId) {
+      if (actionType === "view") {
+        navigate(`/teams/${selectedTeam.id}`); // Navigate to members page
+      } else if (actionType === "delete") {
+        axios
+          .delete(`${API_URL}/teams/${selectedTeam.id}.json`)
+          .then(() => {
+            fetchTeams();
+          })
+          .catch((error) => {
+            console.error("Error deleting team:", error);
+            alert("Failed to delete team. Please try again.");
+          });
+      }
     } else {
-      alert("The id entered is invalid,please enter correct id");
+      alert("The ID entered is invalid, please enter the correct ID.");
     }
     setSelectedTeam(undefined);
+    setActionType(null);
   };
 
   // Predefined color sets for styling teams dynamically
@@ -226,10 +241,7 @@ function TeamsPage() {
                     members
                   </p>
                   <button
-                    onClick={() => {
-                      setShowAccessIdModal(true);
-                      setSelectedTeam(team);
-                    }}
+                    onClick={() => handleRequestAccess(team, "view")}
                     className="text-sm border-1 border-gray-400 hover:text-gray-600 text-black font-bold py-1.5 px-3 rounded-full mb-4 transition duration-300 relative z-10"
                   >
                     View Team
@@ -246,7 +258,7 @@ function TeamsPage() {
                       <UserPen className="w-4 h-4" />
                     </button>
                     <button
-                      onClick={() => handleDelete(team.id)}
+                      onClick={() => handleRequestAccess(team, "delete")}
                       className="text-xs bg-red-300 hover:bg-red-500 text-white font-bold py-1 px-3 rounded-full transition duration-300"
                     >
                       <Trash2 className="w-4 h-4" />

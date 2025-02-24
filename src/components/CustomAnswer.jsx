@@ -13,8 +13,6 @@ function CustomAnswer({ teamId, profileId, user, onRefresh }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
-
     axios
       .post(
         `${API_URL}/teams/${teamId}/members/${profileId}/customAnswers.json`,

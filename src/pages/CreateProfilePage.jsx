@@ -18,8 +18,6 @@ function CreateProfilePage() {
   const handleImage = (event) => {
     setWaitingForImageUrl(true);
 
-    console.log("The file to be uploaded is: ", event.target.files[0]);
-
     const url = `https://api.cloudinary.com/v1_1/${
       import.meta.env.VITE_CLOUD_NAME
     }/upload`;
@@ -33,8 +31,6 @@ function CreateProfilePage() {
     axios
       .post(url, dataToUpload)
       .then((response) => {
-        // to see the structure of the response
-        console.log("RESPONSE ", response.data);
         // the image url is stored in the property secure_url
         setImage(response.data.secure_url);
         setWaitingForImageUrl(false);
@@ -84,8 +80,6 @@ function CreateProfilePage() {
       .catch((error) => {
         console.log("Error", error);
       });
-
-    console.log(newProfile);
   };
 
   return (

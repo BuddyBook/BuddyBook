@@ -21,7 +21,6 @@ function Homepage() {
       return;
     }
     signInWithGoogle().then((response) => {
-      console.log(response);
       navigate("/teams");
     });
   };

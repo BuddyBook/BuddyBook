@@ -59,7 +59,7 @@ function ReactionButtons() {
     axios
       .put(reactionUrl, { count: newCount })
       .then((response) => {
-        console.log("Reaction updated", response.data);
+        console.log("Reaction updated");
       })
       .catch((e) => console.log("Error updating reactions", e));
   };

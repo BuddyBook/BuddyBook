@@ -311,8 +311,8 @@ function TeamsPage() {
 
                     {/* Access ID instructions */}
                     <small className="text-red-800 font-bold">
-                      Please copy and share only with the people in your
-                      team. This is a one-time code, do not lose it.
+                      Please copy and share only with the people in your team.
+                      This is a one-time code, do not lose it.
                     </small>
                   </div>
                 )}
